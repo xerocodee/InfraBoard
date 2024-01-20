@@ -1,0 +1,25 @@
+@import 'app.scss';
+
+.content {
+  grid-column: span 12;
+  text-align: center;
+
+  @include breakpoint('md') {
+    grid-column: 3 / 11;
+  }
+
+  @include breakpoint('xl') {
+    grid-column: 4 / 10;
+  }
+}
+
+.author {
+  font-size: 2.2rem;
+  font-weight: lighter;
+  letter-spacing: 0.05rem;
+
+  a {
+    color: $color-black;
+    font-style: italic;
+  }
+}
