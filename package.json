@@ -17,13 +17,15 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.8",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.35.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-react": "^7.23.3",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^11.2.7",
