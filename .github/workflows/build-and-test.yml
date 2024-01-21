@@ -26,12 +26,6 @@ jobs:
       - name: Run npm install
         run: npm install --legacy-peer-deps
 
-      - name: Run prettier check
-        run: npx prettier --check .
-
-      - name: Run prettier write
-        run: npx prettier --write .
-
       - name: Run linter
         run: npm run lint
 
