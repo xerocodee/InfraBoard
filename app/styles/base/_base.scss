@@ -1,31 +1,31 @@
 // *,
 // *:after,
 // *:before {
-//   box-sizing: inherit;
-//   padding: 0;
-//   margin: 0;
+//   box-sizing: inherit;box-sizing
+//   padding: 0;padding
+//   margin: 0;margin
 // }
 
 // html {
-//   font-size: 62.5%;
+//   font-size: 62.5%;font-size
 // }
 
 // body {
-//   box-sizing: border-box;
-//   font-family: 'Montserrat', sans-serif;
-//   font-size: 1.6rem;
+//   box-sizing: border-box;box-sizing
+//   font-family: 'Montserrat', sans-serif;font-family
+//   font-size: 1.6rem;font-size
 // }
 
 // p {
-//   line-height: 2.4rem;
+//   line-height: 2.4rem;line-height
 
 //   &:not(:last-child) {
-//     margin-bottom: 2rem;
+//     margin-bottom: 2rem;margin-bottom
 //   }
 // }
 
 // a {
-//   text-decoration: none;
+//   text-decoration: none;text-decoration
 // }
 
 @tailwind base;
@@ -33,9 +33,9 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  height: 100%;
   overflow: hidden;
+  height: 100%;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -45,37 +45,37 @@ body {
 
 .canvas {
   position: relative;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 .jsplumb-box {
-  background-size: 16px 16px;
-  background-image: linear-gradient(to right, #80808014 1px, transparent 1px),
-    linear-gradient(to bottom, #80808014 1px, transparent 1px);
   position: relative;
+  overflow: hidden;
   width: 100%;
   height: calc(100vh - 64px); /* 64px is the bar above the canvas */
-  overflow: hidden;
+  background-image: linear-gradient(to right, #80808014 1px, transparent 1px),
+    linear-gradient(to bottom, #80808014 1px, transparent 1px);
+  background-size: 16px 16px;
   cursor: move;
   user-select: none;
 }
 
 .node-item {
-  border-radius: 1em;
+  position: absolute;
+  z-index: 30;
   width: 150px;
   height: 60px;
-  z-index: 30;
-  position: absolute;
+  border-radius: 1em;
   background-color: #fff;
 }
 
 .node-item-round {
-  border-radius: 100%;
+  position: absolute;
+  z-index: 30;
   width: 35px;
   height: 35px;
-  z-index: 30;
-  position: absolute;
+  border-radius: 100%;
   background-color: #fff;
 }
 
@@ -129,8 +129,8 @@ path,
 }
 
 * {
-  scrollbar-width: thin;
   scrollbar-color: #464646 #282c34;
+  scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar {
@@ -142,9 +142,9 @@ path,
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #464646;
-  border-radius: 20px;
   border: 5px solid #282c34;
+  border-radius: 20px;
+  background-color: #464646;
 }
 
 @layer components {
