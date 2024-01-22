@@ -1,10 +1,32 @@
-import Default from '@layout/Default/Default';
-import HomePage from '@template/HomePage/HomePage';
+import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 
-const App = () => (
-  <Default>
-    <HomePage />
-  </Default>
-);
+import { ThemeProvider } from '@mui/material';
 
-export default App;
+import SideBar from 'components/global/SideBar';
+import Project from 'components/Project';
+import { lightTheme } from '@util/theme';
+
+export default function App() {
+  const setViewHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setViewHeight();
+    window.addEventListener('resize', setViewHeight);
+
+    return () => {
+      window.removeEventListener('resize', setViewHeight);
+    };
+  }, []);
+
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <Toaster />
+      <SideBar />
+      <Project />
+    </ThemeProvider>
+  );
+}
