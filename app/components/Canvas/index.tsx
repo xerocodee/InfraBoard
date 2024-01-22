@@ -54,12 +54,11 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
   const [_initX, _setInitX] = useState(0);
   const [_initY, _setInitY] = useState(0);
 
-  const translateWidth =
-    (typeof window !== 'undefined' &&
-      document.documentElement.clientWidth * (1 - _scale)) / 2;
-  const translateHeight =
-    (typeof window !== 'undefined' &&
-      (document.documentElement.clientHeight - 64) * (1 - _scale)) / 2;
+  const translateWidth = (typeof window !== 'undefined' ? 
+    (document.documentElement.clientWidth * (1 - _scale)) / 2 : 0);
+  const translateHeight = (typeof window !== 'undefined' ? 
+    ((document.documentElement.clientHeight - 64) * (1 - _scale)) / 2 : 0);
+
 
   const onCanvasMousewheel = (e: any) => {
     if (e.deltaY < 0) {
