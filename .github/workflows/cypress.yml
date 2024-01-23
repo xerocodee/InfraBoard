@@ -1,5 +1,6 @@
 name: Cypress Tests
 on: [push]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -10,11 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Cypress run
 
+      - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npm start
+          start: npm ci --legacy-peer-deps
           wait-on: 'http://localhost:3000'
           record: true
           parallel: true
