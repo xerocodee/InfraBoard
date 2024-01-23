@@ -7,6 +7,8 @@ import SideBar from 'components/global/SideBar';
 import Project from 'components/Project';
 import { lightTheme } from '@util/theme';
 import Header from 'components/Project/Header';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 export default function App() {
   const setViewHeight = () => {

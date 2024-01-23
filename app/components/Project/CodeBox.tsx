@@ -21,43 +21,43 @@ const CodeBox = () => {
     []
   );
 
-  const copy = () => {
-    navigator.clipboard.writeText(formattedCode);
-    setCopyText('Copied');
+  // const copy = () => {
+  //   navigator.clipboard.writeText(formattedCode);
+  //   setCopyText('Copied');
 
-    setTimeout(() => {
-      setCopyText('Copy');
-    }, 300);
-  };
+  //   setTimeout(() => {
+  //     setCopyText('Copy');
+  //   }, 300);
+  // };
 
-  useEffect(() => {
-    if (language === 'json') {
-      setFormattedCode(JSON.stringify(generatedCode, null, 2));
-    }
+  // useEffect(() => {
+  //   if (language === 'json') {
+  //     setFormattedCode(JSON.stringify(generatedCode, null, 2));
+  //   }
 
-    if (language === 'yaml') {
-      setFormattedCode(
-        YAML.stringify(generatedCode, {
-          defaultKeyType: null,
-        })
-      );
-    }
-  }, [language, generatedCode]);
+  //   if (language === 'yaml') {
+  //     setFormattedCode(
+  //       YAML.stringify(generatedCode, {
+  //         defaultKeyType: null,
+  //       })
+  //     );
+  //   }
+  // }, [language, generatedCode]);
 
-  useEffect(() => {
-    eventBus.on('FETCH_CODE', (data) => {
-      const graphData = data.detail.message;
-      debouncedOnGraphUpdate(generateSteppedManifest(graphData));
-    });
+  // useEffect(() => {
+  //   eventBus.on('FETCH_CODE', (data) => {
+  //     const graphData = data.detail.message;
+  //     debouncedOnGraphUpdate(generateSteppedManifest(graphData));
+  //   });
 
-    return () => {
-      eventBus.remove('FETCH_CODE', () => undefined);
-    };
-  }, []);
+  //   return () => {
+  //     eventBus.remove('FETCH_CODE', () => undefined);
+  //   };
+  // }, []);
 
   return (
     <>
-      <div
+      {/* <div
         className={`absolute top-0 left-0 right-0 z-10 flex justify-end p-1 space-x-2 group-hover:visible invisible`}
       >
         <button
@@ -79,8 +79,7 @@ const CodeBox = () => {
         <button className="btn-util" type="button" onClick={copy}>
           {copyText}
         </button>
-      </div>
-
+      </div> */}
       <CodeEditor
         data={formattedCode}
         language={language}

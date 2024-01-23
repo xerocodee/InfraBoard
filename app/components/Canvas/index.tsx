@@ -16,6 +16,7 @@ import { IJsPlumb } from './useJsPlumb';
 import GroupNode from './nodes/GroupNode';
 import EntryPointNode from './nodes/EntryPointNode';
 import OnExitNode from './nodes/OnExitNode';
+import Drag from 'components/drag';
 
 const CANVAS_ID: string = 'canvas-container-' + uuidv4();
 
@@ -163,7 +164,8 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
             event.preventDefault();
           }}
         >
-          <div
+          <Drag />
+          {/* <div
             id={CANVAS_ID}
             ref={jsPlumb.containerCallbackRef}
             onClick={(ev: any) => {
@@ -206,7 +208,7 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
                 return <OnExitNode key={x.key} onexit={x} />;
               }
             })}
-          </div>
+          </div> */}
         </div>
       )}
     </>
