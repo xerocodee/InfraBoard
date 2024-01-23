@@ -4,6 +4,7 @@ const path = require('path');
 module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'app/styles')],
+    swcMinify: true,
   },
   i18n: {
     locales: ['en-US'],
