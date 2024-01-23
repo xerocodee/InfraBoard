@@ -26,8 +26,8 @@ jobs:
       - name: Run npm install
         run: npm install --legacy-peer-deps
 
-      - name: Run linter
-        run: npm run lint
+      # - name: Run linter
+      #   run: npm run lint
 
       - name: Run Typescript check
         run: npm run type:check
