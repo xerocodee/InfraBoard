@@ -20,14 +20,14 @@ import {
   filterGroups,
   getGroupPosition,
 } from '../../utils';
-import { Canvas } from '../Canvas';
+import { Canvas } from '../canvas';
 import ModalConfirmDelete from '../modals/ConfirmDelete';
 import CreateTemplateModal from '../modals/template/Create';
 import ModalTemplateEdit from '../modals/template/Edit';
 import { useTitle } from '../../hooks';
 import CodeBox from './CodeBox';
 import Header from './Header';
-import { useJsPlumb } from '../Canvas/useJsPlumb';
+import { useJsPlumb } from '../canvas/useJsPlumb';
 import { getGroupNodeValues } from '../modals/template/form-utils';
 
 import defaultCanvasPosition from '../../configs/defaults/canvasPosition';
@@ -59,7 +59,7 @@ export default function Project() {
   //console.log(JSON.stringify(connections));
   //console.log(JSON.stringify(canvasPosition));
 
-  useTitle(['New workflow', ''].join(' | '));
+  useTitle(['InfraBoard'].join('Workflow'));
 
   stateNodesRef.current = nodes;
   stateConnectionsRef.current = connections;

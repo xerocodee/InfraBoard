@@ -12,12 +12,16 @@ const nodeHeight = 60;
 export const getHierarchyTree = (
   nodes: ITemplateNode[]
 ): d3.HierarchyPointNode<INodeItemWithParent> => {
-  const data = nodes.map((node): INodeItemWithParent => {
-    return {
-      ...node,
-      parent: node.inputs[0] ? getNodeKeyFromConnectionId(node.inputs[0]) : '',
-    };
-  });
+  const data = nodes.map(
+    (node): INodeItemWithParent => {
+      return {
+        ...node,
+        parent: node.inputs[0]
+          ? getNodeKeyFromConnectionId(node.inputs[0])
+          : '',
+      };
+    }
+  );
 
   const parents = data.filter((x) => !x.parent);
 

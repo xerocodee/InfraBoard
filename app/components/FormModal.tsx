@@ -72,10 +72,10 @@ const FormModal = (props: IFormModalProps) => {
 
   const [openTab, setOpenTab] = useState(() => tabs[0].value);
 
-  const initialValues = useMemo(
-    () => getInitialValues(selectedNode),
-    [getInitialValues, selectedNode]
-  );
+  const initialValues = useMemo(() => getInitialValues(selectedNode), [
+    getInitialValues,
+    selectedNode,
+  ]);
 
   const handleCreate = useCallback(
     (values: any, formik: any) => {

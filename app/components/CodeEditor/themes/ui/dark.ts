@@ -39,10 +39,9 @@ const solarizedDarkTheme = /*@__PURE__*/ EditorView.theme(
       caretColor: cursor,
     },
     '.cm-cursor, .cm-dropCursor': { borderLeftColor: cursor },
-    '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection':
-      {
-        backgroundColor: selection,
-      },
+    '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
+      backgroundColor: selection,
+    },
     '.cm-panels': { backgroundColor: darkBackground, color: base03 },
     '.cm-panels.cm-panels-top': { borderBottom: '2px solid black' },
     '.cm-panels.cm-panels-bottom': { borderTop: '2px solid black' },
