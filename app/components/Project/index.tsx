@@ -378,8 +378,6 @@ export default function Project() {
       ) : null}
 
       <div className="md:pl-16 flex flex-col flex-1">
-        <Header />
-
         <div className="flex flex-grow relative">
           <div
             className="w-full overflow-hidden md:w-2/3 z-40"

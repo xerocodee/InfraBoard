@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material';
 import SideBar from 'components/global/SideBar';
 import Project from 'components/Project';
 import { lightTheme } from '@util/theme';
+import Header from 'components/Project/Header';
 
 export default function App() {
   const setViewHeight = () => {
@@ -24,6 +25,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={lightTheme}>
+      <Header />
       <Toaster />
       <SideBar />
       <Project />
