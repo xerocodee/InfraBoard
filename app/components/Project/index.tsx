@@ -33,6 +33,10 @@ import { getGroupNodeValues } from '../modals/template/form-utils';
 import defaultCanvasPosition from '../../configs/defaults/canvasPosition';
 import defaultNodes from '../../configs/defaults/nodes';
 import defaultConnections from '../../configs/defaults/connections';
+import { Button, Select, Tabs } from '@mantine/core';
+
+import { FaFileDownload } from 'react-icons/fa';
+import { FaDownload } from 'react-icons/fa6';
 
 export default function Project() {
   const { height } = useWindowDimensions();
@@ -350,6 +354,21 @@ export default function Project() {
     };
   }, []);
 
+  const selectData = [
+    {
+      value: 'main.tf',
+      label: 'main.tf',
+    },
+    {
+      value: 'output.tf',
+      label: 'output.tf',
+    },
+    {
+      value: 'locals.tf',
+      label: 'locals.tf',
+    },
+  ];
+
   return (
     <div className="relative">
       {showModalCreateTemplate ? (
@@ -390,7 +409,7 @@ export default function Project() {
                 <div className="flex space-x-2 p-2">
                   {Object.keys(selectedNodes).length >= 2 && (
                     <button
-                      className="flex space-x-1 btn-util"
+                      className="flex space-x-1 btn-util bg-red-500"
                       type="button"
                       onClick={handleCreateGroup}
                     >
@@ -423,8 +442,26 @@ export default function Project() {
               />
             </div>
           </div>
-
           <div className="group code-column w-1/2 md:w-1/3 absolute top-0 right-0 sm:relative z-40 md:z-30">
+            <div className="flex flex-col bg-white">
+              <Tabs defaultValue="first">
+                <Tabs.List>
+                  <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
+                  <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
+                </Tabs.List>
+              </Tabs>
+              <div className="flex gap-4 justify-start p-3 items-center">
+                <Select data={selectData} placeholder="main.tf" />
+                <div className="flex bg-white ">
+                  <Button variant="default">
+                    <FaFileDownload />
+                  </Button>
+                  <Button variant="default">
+                    <FaDownload />
+                  </Button>
+                </div>
+              </div>
+            </div>
             <CodeBox />
           </div>
         </div>

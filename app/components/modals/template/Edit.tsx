@@ -24,10 +24,10 @@ interface IModalProps {
 const ModalEdit = (props: IModalProps) => {
   const { node, onHide, onUpdateEndpoint } = props;
   const [openTab, setOpenTab] = React.useState('General');
-  const initialValues = useMemo(() => getInitialValues(node), [
-    getInitialValues,
-    node,
-  ]);
+  const initialValues = useMemo(
+    () => getInitialValues(node),
+    [getInitialValues, node]
+  );
 
   const handleUpdate = useCallback(
     (values: any, formik: any) => {
