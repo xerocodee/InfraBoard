@@ -10,15 +10,11 @@ import { RiZoomInLine, RiZoomOutLine } from 'react-icons/ri';
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2';
 import { LuRedo, LuUndo, LuKeyboard } from 'react-icons/lu';
 import {} from 'react-icons/lu';
-import { FiGitBranch, FiClock, FiFileText } from 'react-icons/fi';
+import {  FiFileText } from 'react-icons/fi';
 import { Tooltip } from '@mantine/core';
 import Draggable from 'react-draggable';
 
 const icons = [
-  // {
-  //   icon: <IoMdReturnLeft />,
-  //   tooltip: 'Return to initial position',
-  // },
   {
     icon: <FaRegHand />,
     tooltip: 'Switch to move mode',
@@ -52,14 +48,6 @@ const icons = [
     tooltip: 'Redo (CTRL + shift + Z)',
   },
   {
-    icon: <FiGitBranch />,
-    tooltip: 'Create new Version',
-  },
-  {
-    icon: <FiClock />,
-    tooltip: 'Show versions',
-  },
-  {
     icon: <FiFileText />,
     tooltip: 'Readme',
   },
@@ -70,7 +58,7 @@ const icons = [
 ];
 
 const Drag = () => {
-   const [position, setPosition] = useState({ x: 0, y: 0 });
+   const [position, setPosition] = useState({ x: 450, y: 10 });
    const [isDragged, setIsDragged] = useState(false);
 
    const handleDrag = (data:any) => {
@@ -79,7 +67,7 @@ const Drag = () => {
    };
 
    const handleReturnToInitial = () => {
-     setPosition({ x: 0, y: 0 });
+     setPosition({ x: 450, y: 10 });
      setIsDragged(false);
    };
 
@@ -89,7 +77,7 @@ const Drag = () => {
       position={position}
       onDrag={handleDrag}
     >
-      <div className="flex  w-[50%] z-20">
+      <div className="flex  w-[50%] z-50">
         <div className=" flex  border rounded-lg shadow-xl items-center bg-white z-20">
           <PiDotsSixVerticalBold
             className="drag-handle cursor-move"

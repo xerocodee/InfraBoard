@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+      <div className="px-4 py-3 border-b border-gray-200 flex items-center  z-50">
         <Button
           leftSection={<IoAddCircleOutline size={20} />}
           color="#714eff"
@@ -69,30 +69,6 @@ const Header = () => {
             </div>
           </Tooltip>
         </div>
-         <div className="flex items-center gap-4">
-          <Button
-            color="#714eff"
-            leftSection={<RiGraduationCapFill />}
-            rightSection={<RiArrowDropDownLine size={25} />}
-          >
-            Training
-          </Button>
-          <Button
-            variant="outline"
-            color="#714eff"
-            leftSection={<IoHelpBuoyOutline size={20} />}
-            rightSection={<RiArrowDropDownLine size={25} />}
-          >
-            Help
-          </Button>
-          <Button color="#714eff">16 days left</Button>
-          <div className="flex gap-2 items-center">
-            <Avatar color="violet" radius="xl">
-              MK
-            </Avatar>
-            <RiArrowDropDownLine size={25} />{' '}
-          </div>
-          </div>
       </div>
     </>
   );
