@@ -26,7 +26,6 @@ import CreateTemplateModal from '../modals/template/Create';
 import ModalTemplateEdit from '../modals/template/Edit';
 import { useTitle } from '../../hooks';
 import CodeBox from './CodeBox';
-import Header from './Header';
 import { useJsPlumb } from '../canvas/useJsPlumb';
 import { getGroupNodeValues } from '../modals/template/form-utils';
 

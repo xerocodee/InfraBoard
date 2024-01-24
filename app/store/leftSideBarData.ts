@@ -1,40 +1,62 @@
+import { LuCalculator } from "react-icons/lu";
+import { IoIosGitNetwork } from "react-icons/io"; import { IoHardwareChipOutline } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5"; import { FiGrid } from "react-icons/fi";
+import { FiInbox } from "react-icons/fi"; import { GoGraph } from "react-icons/go"; import { LuMonitor } from "react-icons/lu";
+import { GrStorage } from "react-icons/gr"; import { LuBrainCircuit } from "react-icons/lu";
+import { AiOutlineSecurityScan } from "react-icons/ai";
+import { AWSIcons } from "assets/aws";
+
+
+
 export const leftSideBarData = {
     aws: {
+        icon: "s",
         tabs: [
             {
                 title: 'Compute',
+                icon: LuCalculator,
                 subTabs: [
                     {
                         title: 'App Runner',
+                        icon: AWSIcons.AppRunnerIcon
                     },
                     {
                         title: 'AutoScaling',
+                        icon: AWSIcons.AutoScalingIcon
                     },
                     {
                         title: 'Batch',
+                        icon: AWSIcons.AwsBatchIcon
                     },
                     {
                         title: 'Containers',
+                        icon: AWSIcons.ContainersIcon
                     },
                     {
                         title: 'EC2',
+                        icon: AWSIcons.Ec2Icon
                     },
                     {
                         title: 'Elastic Beanstalk',
+                        icon: AWSIcons.ElasticBeanStalkIcon
                     },
                     {
                         title: 'Image Builder',
+                        icon: AWSIcons.ImageBuilderIcon
                     },
                     {
                         title: 'Lamda',
+                        icon: AWSIcons.LambdaIcon
                     },
                     {
                         title: 'Lightsail',
+                        icon: AWSIcons.LightSailIcon
                     },
                 ],
             },
             {
                 title: 'Network',
+                icon: IoIosGitNetwork,
                 subTabs: [
                     {
                         title: 'API Gateway',
@@ -76,6 +98,7 @@ export const leftSideBarData = {
             },
             {
                 title: 'Storage',
+                icon: FiInbox,
                 subTabs: [
                     {
                         title: 'Archieve & Backup',
@@ -96,6 +119,7 @@ export const leftSideBarData = {
             },
             {
                 title: 'Database',
+                icon: GrStorage,
                 subTabs: [
                     {
                         title: 'DMS',
@@ -134,6 +158,7 @@ export const leftSideBarData = {
             },
             {
                 title: 'Security & Identity',
+                icon: AiOutlineSecurityScan,
                 subTabs: [
                     {
                         title: 'Access analyzer',
@@ -193,6 +218,7 @@ export const leftSideBarData = {
             },
             {
                 title: 'Tools',
+                icon: IoSettingsOutline,
                 subTabs: [
                     { title: "Budgets" },
                     { title: "CE (Cost Explorer)" },
@@ -241,12 +267,14 @@ export const leftSideBarData = {
             },
             {
                 title: 'AI',
+                icon: IoHardwareChipOutline,
                 subTabs: [{ title: "Kendra" },
                 { title: "Lex" },
                 { title: "Sagemaker" }]
             },
             {
                 title: "Analytics",
+                icon: GoGraph,
                 subTabs: [{ title: "Athena" },
                 { title: "CloudSearch" },
                 { title: "Data Exchange" },
@@ -260,6 +288,7 @@ export const leftSideBarData = {
             },
             {
                 title: "Applications",
+                icon: LuMonitor,
                 subTabs: [{ title: "Amplify Console" },
                 { title: "AppConfig" },
                 { title: "AppFlow" },
@@ -278,12 +307,14 @@ export const leftSideBarData = {
                 { title: "MediaStore" }]
             },
             {
-                title: "IOT",
+                title: "IoT",
+                icon: LuBrainCircuit,
                 subTabs: [{ title: "IOT" },
                 ]
             },
             {
                 title: "Other",
+                icon: FiGrid,
                 subTabs: [{ title: "ACM" },
                 { title: "CloudHSM v2" },
                 { title: "Comprehend Document Classifier" },
