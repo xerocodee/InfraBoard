@@ -6,6 +6,8 @@ import { ThemeProvider } from '@mui/material';
 import SideBar from 'components/global/SideBar';
 import Project from 'components/Project';
 import { lightTheme } from '@util/theme';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 export default function App() {
   const setViewHeight = () => {
@@ -23,10 +25,12 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeProvider theme={lightTheme}>
-      <Toaster />
-      <SideBar />
-      <Project />
-    </ThemeProvider>
+    <MantineProvider>
+      <ThemeProvider theme={lightTheme}>
+        <Toaster />
+        <SideBar />
+        <Project />
+      </ThemeProvider>
+    </MantineProvider>
   );
 }
