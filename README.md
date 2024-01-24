@@ -1,28 +1,48 @@
 <p align="center"><img src="./public/logo.png" alt="InfraBorad"/></p>
 
-<h2 align="center">XeroCodee InfraBorad</h2>
+<h2 align="center">InfraBoard - Visual Cloud Infrastructure Management</h2>
 
-<h4 align="center"> Cloud infrastructures should be designed and managed collaboratively and visually. Get your IaC standardised.</h4>
+Welcome to InfraBoard, the end-to-end solution for visually building and managing cloud infrastructures. Simplify your infrastructure management with our intuitive, collaborative, and innovative tool.
 
----
+## 🌟 Features
 
-### InfraBorad
+- **Visual Interface**: Design your cloud architecture visually and let InfraBoard auto-generate the code.
+- **Seamless Automation**: Integrate easily with existing processes, accelerating automation.
+- **Centralized Management**: Manage all your cloud infrastructures in one place.
+- **Efficiency & Templates**: Utilize our DRY architecture templates and integrated CI/CD engine.
+- **Standardization & Best Practices**: Streamline your processes with embedded best practices.
 
-A complete solution for managing and building cloud infrastructures visually is InfraBoard. It facilitates the centralization of your cloud and standardises the construction of the infrastructure, giving your company the option to establish a self-serve model.
+## ⚙️ InfraBoard & Terraform
 
-It is a cooperative, cutting-edge solution that incorporates IaC best practices natively and automatically enforces security using an integrated CI/CD engine.
+Leverage the power of Terraform without the hassle of manual coding. InfraBoard uses Terraform as an execution layer, offering an efficient ecosystem for managing cloud infrastructures.
 
-- With InfraBoard, you only need to complete the task once thanks to its visual and intuitive approach.
+## 🚀 Why InfraBoard?
 
-- The code is automatically produced as you design. 📌 It supports your modules, expedites automation, and integrates with current processes with ease.
+- Migrate to IaC & Terraform with ease.
+- Standardize your cloud infrastructure processes.
+- Real-time documentation and version tracking.
+- Multi-cloud design.
+- Build trust with clear, documented processes.
+- Integrated best practices and CI/CD engine.
+- Save time across various operations.
 
-- Your source code repository is just one git push away. 👌 It streamlines the administration of every cloud infrastructure you have.
+## 🛠 How It Works
 
-- There is just one solution to handle all aspects of cloud infrastructure, eliminating the need for ten distinct tools with various maintenance requirements and learning curves. 👌 It facilitates quick and effective creation and upkeep of your cloud infrastructures.
-
-- Use our integrated CI/CD engine and architecture templates to DRY (Don't Repeat Yourself). 📌 It facilitates the development and upkeep of internal standards as well as the integration of best practices and process streamlining.
-
----
+InfraBoard combines synchronous and asynchronous services for a streamlined experience. Our frontend uses CDNs for low latency, while our backend spans key global regions.
 
 ### Getting Started
 Here you will find all the available npm commands [HERE](https://github.com/xerocodee/InfraBoard/wiki/Getting-Started)
+
+## 🤝 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 🔒 License
+
+Distributed under the [LICENSE](./LICENSE). See `LICENSE` for more information.

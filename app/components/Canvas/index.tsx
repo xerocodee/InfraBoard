@@ -1,31 +1,16 @@
 'use client';
 import { useState, useEffect, ReactElement, FunctionComponent } from 'react';
-import { Dictionary, values } from 'lodash';
-import { v4 as uuidv4 } from 'uuid';
+import { Dictionary } from 'lodash';
 import eventBus from '../../events/eventBus';
-import {
-  CallbackFunction,
-  ITemplateNode,
-  INodeItem,
-  IGroupNode,
-  IEntryPointNode,
-  IOnExitNode,
-} from '../../types';
-import TemplateNode from './nodes/TemplateNode';
+import { CallbackFunction, INodeItem } from '../../types';
 import { IJsPlumb } from './useJsPlumb';
-import GroupNode from './nodes/GroupNode';
-import EntryPointNode from './nodes/EntryPointNode';
-import OnExitNode from './nodes/OnExitNode';
 import Drag from 'components/drag';
-
-const CANVAS_ID: string = 'canvas-container-' + uuidv4();
 
 export interface ICanvasProps {
   nodes: Dictionary<INodeItem>;
   canvasPosition: any;
   onCanvasUpdate: CallbackFunction;
   onCanvasClick: CallbackFunction;
-
   setTemplateToEdit: CallbackFunction;
   setNodeToDelete: CallbackFunction;
   selectedNodes: Record<string, any>;
@@ -54,15 +39,6 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
   const [_top, _setTop] = useState(0);
   const [_initX, _setInitX] = useState(0);
   const [_initY, _setInitY] = useState(0);
-
-  const translateWidth =
-    typeof window !== 'undefined'
-      ? (document.documentElement.clientWidth * (1 - _scale)) / 2
-      : 0;
-  const translateHeight =
-    typeof window !== 'undefined'
-      ? ((document.documentElement.clientHeight - 64) * (1 - _scale)) / 2
-      : 0;
 
   const onCanvasMousewheel = (e: any) => {
     if (e.deltaY < 0) {
@@ -152,7 +128,6 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
     <>
       {nodes && (
         <div
-          key={CANVAS_ID}
           className="jsplumb-box"
           onWheel={onCanvasMousewheel}
           onMouseMove={onCanvasMouseMove}
@@ -165,50 +140,6 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
           }}
         >
           <Drag />
-          {/* <div
-            id={CANVAS_ID}
-            ref={jsPlumb.containerCallbackRef}
-            onClick={(ev: any) => {
-              if (ev.target.id && ev.target.id === CANVAS_ID) {
-                onCanvasClick();
-              }
-            }}
-            className="canvas"
-            style={{
-              transformOrigin: '0px 0px 0px',
-              transform: `translate(${translateWidth}px, ${translateHeight}px) scale(${_scale})`,
-            }}
-          >
-            {values(nodes).map((x) => {
-              if (x.type === 'TEMPLATE') {
-                x = x as ITemplateNode;
-                return (
-                  <TemplateNode
-                    key={x.key}
-                    node={x}
-                    setTemplateToEdit={setTemplateToEdit}
-                    setNodeToDelete={setNodeToDelete}
-                    selected={x.key in selectedNodes}
-                  />
-                );
-              }
-
-              if (x.type === 'GROUP') {
-                x = x as IGroupNode;
-                return <GroupNode key={x.key} group={x} />;
-              }
-
-              if (x.type === 'ENTRYPOINT') {
-                x = x as IEntryPointNode;
-                return <EntryPointNode key={x.key} entrypoint={x} />;
-              }
-
-              if (x.type === 'ONEXIT') {
-                x = x as IOnExitNode;
-                return <OnExitNode key={x.key} onexit={x} />;
-              }
-            })}
-          </div> */}
         </div>
       )}
     </>

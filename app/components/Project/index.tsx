@@ -1,7 +1,6 @@
 'use client';
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Dictionary, omit } from 'lodash';
-import { PlusIcon } from '@heroicons/react/20/solid';
 import {
   ITemplateNode,
   INodeItem,
@@ -16,7 +15,6 @@ import {
   flattenLibraries,
   ensure,
   getMatchingSetIndex,
-  attachUUID,
   filterGroups,
   getGroupPosition,
 } from '../../utils';
@@ -26,9 +24,7 @@ import CreateTemplateModal from '../modals/template/Create';
 import ModalTemplateEdit from '../modals/template/Edit';
 import { useTitle } from '../../hooks';
 import CodeBox from './CodeBox';
-import Header from './Header';
 import { useJsPlumb } from '../canvas/useJsPlumb';
-import { getGroupNodeValues } from '../modals/template/form-utils';
 
 import defaultCanvasPosition from '../../configs/defaults/canvasPosition';
 import defaultNodes from '../../configs/defaults/nodes';
@@ -54,10 +50,6 @@ export default function Project() {
   const [canvasPosition, setCanvasPosition] = useState<Record<string, number>>(
     {}
   );
-
-  //console.log(JSON.stringify(nodes));
-  //console.log(JSON.stringify(connections));
-  //console.log(JSON.stringify(canvasPosition));
 
   useTitle(['InfraBoard'].join('Workflow'));
 
@@ -282,31 +274,6 @@ export default function Project() {
     onConnectionDetached
   );
 
-  const handleCreateGroup = useCallback(() => {
-    const values = getGroupNodeValues({
-      key: attachUUID('group'),
-      position: { left: 50, top: 50 },
-      inputs: ['op_source'],
-      outputs: [],
-      type: 'GROUP',
-      data: {
-        group: {
-          name: 'new group',
-          nodeIds: Object.keys(selectedNodes).filter((x: any) => {
-            if (x.includes('template')) {
-              return x;
-            }
-          }),
-        },
-      },
-      configs: {
-        name: 'new group',
-      },
-    });
-
-    onAddEndpoint(values);
-  }, [selectedNodes]);
-
   useEffect(() => {
     setNodes({
       ...stateNodesRef.current,
@@ -370,7 +337,7 @@ export default function Project() {
   ];
 
   return (
-    <div className="relative">
+    <div className="">
       {showModalCreateTemplate ? (
         <CreateTemplateModal
           onHide={() => setShowModalCreateTemplate(false)}
@@ -396,73 +363,50 @@ export default function Project() {
         />
       ) : null}
 
-      <div className="md:pl-16 flex flex-col flex-1">
-        <div className="flex flex-grow relative">
-          <div
-            className="w-full overflow-hidden md:w-2/3 z-40"
-            style={{ height: height - 64 }}
-          >
-            <div className="relative h-full">
-              <div className="absolute top-0 right-0 z-40">
-                <div className="flex space-x-2 p-2">
-                  {Object.keys(selectedNodes).length >= 2 && (
-                    <button
-                      className="flex space-x-1 btn-util bg-red-500"
-                      type="button"
-                      onClick={handleCreateGroup}
-                    >
-                      <PlusIcon className="w-4" />
-                      <span>Parallel</span>
-                    </button>
-                  )}
-                  <button
-                    className="flex space-x-1 btn-util"
-                    type="button"
-                    onClick={() => setShowModalCreateTemplate(true)}
-                  >
-                    <PlusIcon className="w-4" />
-                    <span>Template</span>
-                  </button>
-                </div>
-              </div>
-
-              <Canvas
-                jsPlumb={jsPlumb}
-                nodes={nodes}
-                canvasPosition={canvasPosition}
-                onCanvasUpdate={(canvasData: any) => onCanvasUpdate(canvasData)}
-                onCanvasClick={() => onCanvasClick()}
-                setTemplateToEdit={(node: ITemplateNode) =>
-                  setTemplateToEdit(node)
-                }
-                setNodeToDelete={(node: ITemplateNode) => setNodeToDelete(node)}
-                selectedNodes={selectedNodes}
-              />
-            </div>
-          </div>
-          <div className="group code-column w-1/2 md:w-1/3 absolute top-0 right-0 sm:relative z-40 md:z-30">
-            <div className="flex flex-col bg-white">
-              <Tabs defaultValue="first">
-                <Tabs.List>
-                  <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
-                  <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
-                </Tabs.List>
-              </Tabs>
-              <div className="flex gap-4 justify-start p-3 items-center">
-                <Select data={selectData} placeholder="main.tf" />
-                <div className="flex bg-white ">
-                  <Button variant="default">
-                    <FaFileDownload />
-                  </Button>
-                  <Button variant="default">
-                    <FaDownload />
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <CodeBox />
+      {/* <div className="md:pl-16 flex flex-col flex-1"> */}
+      <div className="flex flex-grow relative">
+        <div
+          className="w-full overflow-hidden  z-40"
+          style={{ height: height - 64 }}
+        >
+          <div className="relative h-full">
+            <Canvas
+              jsPlumb={jsPlumb}
+              nodes={nodes}
+              canvasPosition={canvasPosition}
+              onCanvasUpdate={(canvasData: any) => onCanvasUpdate(canvasData)}
+              onCanvasClick={() => onCanvasClick()}
+              setTemplateToEdit={(node: ITemplateNode) =>
+                setTemplateToEdit(node)
+              }
+              setNodeToDelete={(node: ITemplateNode) => setNodeToDelete(node)}
+              selectedNodes={selectedNodes}
+            />
           </div>
         </div>
+        <div className="group code-column w-1/2 md:w-1/3 absolute top-0 right-0 sm:relative z-40 md:z-30">
+          <div className="flex flex-col bg-white">
+            <Tabs defaultValue="first">
+              <Tabs.List>
+                <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
+                <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
+              </Tabs.List>
+            </Tabs>
+            <div className="flex gap-4 justify-start p-3 items-center">
+              <Select data={selectData} placeholder="main.tf" />
+              <div className="flex bg-white ">
+                <Button variant="default">
+                  <FaFileDownload />
+                </Button>
+                <Button variant="default">
+                  <FaDownload />
+                </Button>
+              </div>
+            </div>
+          </div>
+          <CodeBox />
+        </div>
+        {/* </div> */}
       </div>
     </div>
   );
