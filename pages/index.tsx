@@ -4,9 +4,11 @@ import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@mui/material';
 
 import SideBar from 'components/global/SideBar';
-import Project from 'components/Project';
+import Project from 'components/project';
 import { lightTheme } from '@util/theme';
-import Header from 'components/Project/Header';
+import Header from 'components/project/Header';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 export default function App() {
   const setViewHeight = () => {
