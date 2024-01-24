@@ -12,7 +12,10 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { leftSideBarData } from 'store/leftSideBarData';
-
+interface SubTabInterface {
+  title: string;
+  icon?: any;
+}
 export default function SideBar() {
   return (
     <>
@@ -57,48 +60,56 @@ export default function SideBar() {
               <hr className=" bg-black w-full" />
 
               <Accordion defaultValue="customization" className="w-full">
-
-                {
-                  leftSideBarData.aws.tabs.map(({ title, icon: Icon, subTabs }) => <Accordion.Item value={title} key={title}>
-                    <Accordion.Control>
-                      <span className="flex  items-center font-semibold gap-2">
-                        <Icon />
-                        {title}
-                      </span>{' '}
-                    </Accordion.Control>
-                    <Accordion.Panel >
-                      <div className="grid grid-cols-3 gap-2 place-content-center py-4 ">
-                        {
-                          subTabs.map(({ title }) =>
-                            <Tooltip
-                              key={title}
-                              label={title}
-                              withArrow
-                              transitionProps={{ transition: 'slide-right', duration: 200 }}
-                              position="right"
-                              arrowSize={6}
-                              c="#0554ff"
-                              color="#e0e0e0"
-
-                            >
-                              <div className="w-full h-20 border-2 rounded p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
-                                <IoCalculatorOutline className="text-5xl mx-auto p-1" />
-                                <p className="truncate text-xs   text-center">
-                                  {title}
-                                </p>
-                              </div>
-                            </Tooltip>
-                          )
-                        }
-                      </div>
-                    </Accordion.Panel>
-                  </Accordion.Item>)
-                }
+                {leftSideBarData.aws.tabs.map(
+                  ({ title, icon: Icon, subTabs }) => (
+                    <Accordion.Item value={title} key={title}>
+                      <Accordion.Control>
+                        <span className="flex  items-center font-semibold gap-2">
+                          <Icon />
+                          {title}
+                        </span>{' '}
+                      </Accordion.Control>
+                      <Accordion.Panel>
+                        <div className="grid grid-cols-3 gap-2 place-content-center py-4 ">
+                          {subTabs.map(
+                            ({ title, icon: Icon }: SubTabInterface) => (
+                              <Tooltip
+                                key={title}
+                                label={title}
+                                withArrow
+                                transitionProps={{
+                                  transition: 'slide-right',
+                                  duration: 200,
+                                }}
+                                className="font-medium shadow-2xl border-[1px] border-gray-200"
+                                position="right"
+                                arrowSize={6}
+                                c="#003ab7"
+                                color="#fdfdfd"
+                              >
+                                <div className="w-full flex flex-col justify-center gap-1  items-center h-20 border-2 rounded p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
+                                  {Icon ? (
+                                    <Icon className="" />
+                                  ) : (
+                                    <IoCalculatorOutline className="text-5xl mx-auto p-1" />
+                                  )}
+                                  <p className="truncate text-xs w-4/5   text-center">
+                                    {title}
+                                  </p>
+                                </div>
+                              </Tooltip>
+                            )
+                          )}
+                        </div>
+                      </Accordion.Panel>
+                    </Accordion.Item>
+                  )
+                )}
               </Accordion>
             </nav>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }

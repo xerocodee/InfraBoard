@@ -3,7 +3,7 @@ import YAML from 'yaml';
 import { debounce } from 'lodash';
 import generateSteppedManifest from '../../utils/generators/step';
 import eventBus from '../../events/eventBus';
-import CodeEditor from '../CodeEditor';
+import CodeEditor from '../codeEditor';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const CodeBox = () => {

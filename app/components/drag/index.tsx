@@ -9,7 +9,6 @@ import { MdGridOn } from 'react-icons/md';
 import { RiZoomInLine, RiZoomOutLine } from 'react-icons/ri';
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2';
 import { LuRedo, LuUndo, LuKeyboard } from 'react-icons/lu';
-import {} from 'react-icons/lu';
 import { FiGitBranch, FiClock, FiFileText } from 'react-icons/fi';
 import { Tooltip } from '@mantine/core';
 import Draggable from 'react-draggable';
