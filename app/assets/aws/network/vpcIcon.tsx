@@ -1,6 +1,6 @@
 import React from 'react';
 
-function VpcIcon({className}) {
+function VpcIcon({ className }) {
   return (
     <svg
       className={className}

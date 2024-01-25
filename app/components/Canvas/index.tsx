@@ -1,14 +1,10 @@
 'use client';
 import { useState, useEffect, ReactElement, FunctionComponent } from 'react';
-import { Dictionary,  } from 'lodash';
+import { Dictionary } from 'lodash';
 import eventBus from '../../events/eventBus';
-import {
-  CallbackFunction,
-  INodeItem,
-} from '../../types';
+import { CallbackFunction, INodeItem } from '../../types';
 import { IJsPlumb } from './useJsPlumb';
 import Drag from 'components/drag';
-
 
 export interface ICanvasProps {
   nodes: Dictionary<INodeItem>;

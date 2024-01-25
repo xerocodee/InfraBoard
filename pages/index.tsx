@@ -8,7 +8,6 @@ import Project from 'components/project';
 import { lightTheme } from '@util/theme';
 import Header from 'components/project/Header';
 
-
 export default function App() {
   const setViewHeight = () => {
     const vh = window.innerHeight * 0.01;

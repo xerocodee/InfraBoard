@@ -274,7 +274,6 @@ export default function Project() {
     onConnectionDetached
   );
 
-
   useEffect(() => {
     setNodes({
       ...stateNodesRef.current,
@@ -365,48 +364,48 @@ export default function Project() {
       ) : null}
 
       {/* <div className="md:pl-16 flex flex-col flex-1"> */}
-        <div className="flex flex-grow relative">
-          <div
-            className="w-full overflow-hidden  z-40"
-            style={{ height: height - 64 }}
-          >
-            <div className="relative h-full">
-              <Canvas
-                jsPlumb={jsPlumb}
-                nodes={nodes}
-                canvasPosition={canvasPosition}
-                onCanvasUpdate={(canvasData: any) => onCanvasUpdate(canvasData)}
-                onCanvasClick={() => onCanvasClick()}
-                setTemplateToEdit={(node: ITemplateNode) =>
-                  setTemplateToEdit(node)
-                }
-                setNodeToDelete={(node: ITemplateNode) => setNodeToDelete(node)}
-                selectedNodes={selectedNodes}
-              />
-            </div>
+      <div className="flex flex-grow relative">
+        <div
+          className="w-full overflow-hidden  z-40"
+          style={{ height: height - 64 }}
+        >
+          <div className="relative h-full">
+            <Canvas
+              jsPlumb={jsPlumb}
+              nodes={nodes}
+              canvasPosition={canvasPosition}
+              onCanvasUpdate={(canvasData: any) => onCanvasUpdate(canvasData)}
+              onCanvasClick={() => onCanvasClick()}
+              setTemplateToEdit={(node: ITemplateNode) =>
+                setTemplateToEdit(node)
+              }
+              setNodeToDelete={(node: ITemplateNode) => setNodeToDelete(node)}
+              selectedNodes={selectedNodes}
+            />
           </div>
-          <div className="group code-column w-1/2 md:w-1/3 absolute top-0 right-0 sm:relative z-40 md:z-30">
-            <div className="flex flex-col bg-white">
-              <Tabs defaultValue="first">
-                <Tabs.List>
-                  <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
-                  <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
-                </Tabs.List>
-              </Tabs>
-              <div className="flex gap-4 justify-start p-3 items-center">
-                <Select data={selectData} placeholder="main.tf" />
-                <div className="flex bg-white ">
-                  <Button variant="default">
-                    <FaFileDownload />
-                  </Button>
-                  <Button variant="default">
-                    <FaDownload />
-                  </Button>
-                </div>
+        </div>
+        <div className="group code-column w-1/2 md:w-1/3 absolute top-0 right-0 sm:relative z-40 md:z-30">
+          <div className="flex flex-col bg-white">
+            <Tabs defaultValue="first">
+              <Tabs.List>
+                <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
+                <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
+              </Tabs.List>
+            </Tabs>
+            <div className="flex gap-4 justify-start p-3 items-center">
+              <Select data={selectData} placeholder="main.tf" />
+              <div className="flex bg-white ">
+                <Button variant="default">
+                  <FaFileDownload />
+                </Button>
+                <Button variant="default">
+                  <FaDownload />
+                </Button>
               </div>
             </div>
-            <CodeBox />
           </div>
+          <CodeBox />
+        </div>
         {/* </div> */}
       </div>
     </div>
