@@ -40,6 +40,7 @@ body:
     attributes:
       label: Environment
       options:
+        - Stage
         - Production
         - Release
         - Deploy preview
