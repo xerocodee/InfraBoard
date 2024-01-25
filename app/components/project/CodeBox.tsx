@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CodeEditor from '../CodeEditor';
+import CodeEditor from '../codeEditor';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const CodeBox = () => {
