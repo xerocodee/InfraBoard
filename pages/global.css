@@ -20,9 +20,7 @@ body {
 }
 
 .jsplumb-box {
-  background-image: linear-gradient(to right, #80808014 1px, transparent 1px),
-    linear-gradient(to bottom, #80808014 1px, transparent 1px);
-  background-size: 16px 16px;
+  /* background-size: 16px 16px; */
   position: relative;
   width: 100%;
   overflow: hidden;

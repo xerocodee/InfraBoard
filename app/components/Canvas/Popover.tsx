@@ -13,7 +13,7 @@ export const Popover: FunctionComponent<IPopoverProps> = (
 
   return (
     <div className="relative flex flex-col items-center">
-      <div className="flex absolute -bottom-2 flex flex-col items-center p-2">
+      <div className="flex absolute -bottom-2  flex-col items-center p-2">
         <span className="relative z-10 p-2.5 text-xs leading-none text-white whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
           <div className="flex space-x-2.5">
             <TrashIcon
