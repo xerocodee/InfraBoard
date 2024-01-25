@@ -39,6 +39,10 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
   const [_top, _setTop] = useState(0);
   const [_initX, _setInitX] = useState(0);
   const [_initY, _setInitY] = useState(0);
+  const [showBackgroundImage, setShowBackgroundImage] = useState(true);
+  // const [backgroundSize, setBackgroundSize] = useState('16px');
+  const [backgroundSizeX, setBackgroundSizeX] = useState('16px');
+  const [backgroundSizeY, setBackgroundSizeY] = useState('16px');
 
   const onCanvasMousewheel = (e: any) => {
     if (e.deltaY < 0) {
@@ -124,11 +128,55 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
     };
   }, []);
 
+  const handleZoomIn = () => {
+    const newBackgroundSizeX = parseInt(backgroundSizeX) + 2 + 'px';
+    const newBackgroundSizeY = parseInt(backgroundSizeY) + 2 + 'px';
+
+    setBackgroundSizeX(newBackgroundSizeX);
+    setBackgroundSizeY(newBackgroundSizeY);
+
+    setShowBackgroundImage((prev: any) => ({
+      ...prev,
+      backgroundSize: `${newBackgroundSizeX} ${newBackgroundSizeY}`,
+    }));
+  };
+
+  const handleZoomOut = () => {
+    const newBackgroundSizeX = parseInt(backgroundSizeX) - 2 + 'px';
+    const newBackgroundSizeY = parseInt(backgroundSizeY) - 2 + 'px';
+
+    setBackgroundSizeX(newBackgroundSizeX);
+    setBackgroundSizeY(newBackgroundSizeY);
+
+    setShowBackgroundImage((prev: any) => ({
+      ...prev,
+      backgroundSize: `${newBackgroundSizeX} ${newBackgroundSizeY}`,
+    }));
+  };
+
+  const handleFitContent = () => {
+    setBackgroundSizeX('16px');
+    setBackgroundSizeY('16px');
+
+    setShowBackgroundImage((prev: any) => ({
+      ...prev,
+      backgroundSize: '16px 16px',
+    }));
+  };
+
   return (
     <>
       {nodes && (
         <div
           className="jsplumb-box"
+          style={{
+            backgroundImage: showBackgroundImage
+              ? 'linear-gradient(to right, #80808014 1px, transparent 1px), linear-gradient(to bottom, #80808014 1px, transparent 1px)'
+              : 'none',
+            backgroundSize: showBackgroundImage
+              ? `${backgroundSizeX} ${backgroundSizeY}`
+              : 'auto',
+          }}
           onWheel={onCanvasMousewheel}
           onMouseMove={onCanvasMouseMove}
           onMouseDown={onCanvasMouseDown}
@@ -139,7 +187,12 @@ export const Canvas: FunctionComponent<ICanvasProps> = (
             event.preventDefault();
           }}
         >
-          <Drag />
+          <Drag
+            setShowBackgroundImage={setShowBackgroundImage}
+            handleZoomIn={handleZoomIn}
+            handleZoomOut={handleZoomOut}
+            handleFitContent={handleFitContent}
+          />
         </div>
       )}
     </>

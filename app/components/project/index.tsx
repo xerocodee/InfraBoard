@@ -29,7 +29,7 @@ import { useJsPlumb } from '../canvas/useJsPlumb';
 import defaultCanvasPosition from '../../configs/defaults/canvasPosition';
 import defaultNodes from '../../configs/defaults/nodes';
 import defaultConnections from '../../configs/defaults/connections';
-import { Button, Select, Tabs } from '@mantine/core';
+import { Button, Select, Tabs, Tooltip } from '@mantine/core';
 
 import { FaFileDownload } from 'react-icons/fa';
 import { FaDownload } from 'react-icons/fa6';
@@ -388,19 +388,51 @@ export default function Project() {
           <div className="flex flex-col bg-white">
             <Tabs defaultValue="first">
               <Tabs.List>
-                <Tabs.Tab value="first">TERRAFORM CODE</Tabs.Tab>
-                <Tabs.Tab value="second">ONE ACTION</Tabs.Tab>
+                <Tabs.Tab
+                  value="first"
+                  className="text-base  p-2 text-[#8b51ff]"
+                >
+                  TERRAFORM CODE
+                </Tabs.Tab>
               </Tabs.List>
             </Tabs>
             <div className="flex gap-4 justify-start p-3 items-center">
               <Select data={selectData} placeholder="main.tf" />
-              <div className="flex bg-white ">
-                <Button variant="default">
-                  <FaFileDownload />
-                </Button>
-                <Button variant="default">
-                  <FaDownload />
-                </Button>
+              <div className="flex gap-2 bg-white ">
+                <Tooltip
+                  label="Download the selected file"
+                  withArrow
+                  position="bottom"
+                  arrowSize={8}
+                  c="violet"
+                  color="white"
+                  style={{
+                    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 'bolder',
+                  }}
+                >
+                  <Button variant="default">
+                    <FaFileDownload />
+                  </Button>
+                </Tooltip>
+                <Tooltip
+                  label="Download all files"
+                  withArrow
+                  position="bottom"
+                  arrowSize={8}
+                  c="violet"
+                  color="white"
+                  style={{
+                    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 'bolder',
+                  }}
+                >
+                  <Button variant="default">
+                    <FaDownload />
+                  </Button>
+                </Tooltip>
               </div>
             </div>
           </div>

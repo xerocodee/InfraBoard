@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="px-4 py-3 border-b border-gray-200 flex items-center  z-50">
+      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50">
         <Button
           leftSection={<IoAddCircleOutline size={20} />}
           color="#714eff"
@@ -23,7 +23,7 @@ const Header = () => {
         >
           New Architecture
         </Button>
-        <div className="flex rounded-md bg-[#f1f5f9] p-1">
+        <div className="flex  rounded-md bg-[#f1f5f9] p-1">
           <Tooltip
             label="Design"
             withArrow
