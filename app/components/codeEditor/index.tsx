@@ -38,7 +38,7 @@ interface ICodeEditorProps {
 
 const languageExtensions: any = {
   json: [new LanguageSupport(jsonLanguage)],
-  yaml: [StreamLanguage.define(yaml)],
+  yaml: [StreamLanguage.define(yaml as any)],
   blank: undefined,
 };
 
