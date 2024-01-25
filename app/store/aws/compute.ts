@@ -8,6 +8,16 @@ const compute = {
     {
       title: 'App Runner',
       icon: AWSIcons.AppRunnerIcon,
+      subList: [
+        {
+          title: 'Apprunner Auto Scaling Configuration Version',
+          desc: 'aws_apprunner_auto_scaling_configuration',
+        },
+        {
+          title: 'Apprunner Auto Scaling Configuration Version',
+          desc: 'aws_apprunner_auto_scaling_configuration',
+        },
+      ],
     },
     {
       title: 'AutoScaling',
