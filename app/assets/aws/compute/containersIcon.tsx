@@ -1,12 +1,12 @@
 import React from 'react';
 
-function ContainerIcon() {
+function ContainerIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="48"
       height="48"
-      className="w-6 h-6"
+      className={className}
     >
       <path
         fill="#D45B07"

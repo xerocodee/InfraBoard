@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Ec2Icon() {
+function Ec2Icon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="40"
       height="40"
-      className="w-6 h-6"
+      className={className}
     >
       <defs>
         <linearGradient

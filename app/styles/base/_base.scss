@@ -130,7 +130,7 @@ path,
 }
 
 * {
-  scrollbar-color: #464646 #282c34;
+  // scrollbar-color: #464646 #282c34;
   scrollbar-width: thin;
 }
 
@@ -139,13 +139,13 @@ path,
 }
 
 *::-webkit-scrollbar-track {
-  background: #282c34;
+  background: #ffffff;
 }
 
 *::-webkit-scrollbar-thumb {
-  border: 5px solid #282c34;
+  // border: 5px solid #282c34;
   border-radius: 20px;
-  background-color: #464646;
+  // background-color: #464646;
 }
 
 @layer components {
