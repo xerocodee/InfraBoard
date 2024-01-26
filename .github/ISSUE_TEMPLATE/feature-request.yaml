@@ -6,37 +6,37 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to request a feature for Keploy
+        Thank you for taking the time to request a feature for Keploy.
   - type: checkboxes
     attributes:
       label: Is there an existing feature request for this?
-      description: Please search to see if an issue related to this feature request/feature request already exists
+      description: Please search to see if an issue related to this feature request/feature request already exists.
       options:
         - label: I have searched the existing issues
           required: true
-- type: textarea
-  attributes:
-    label: Detailed Description
-    description: Please provide a more detailed explanation of the feature
-    validations:
-      required: false
-- type: textarea
-  attributes:
-    label: Use Cases and Benefits
-    description: Describe specific use cases and potential benefits of this feature
-    validations:
-      required: false
-- type: dropdown
-  id: priority
-  attributes:
-    label: Priority/Impact
-    options:
-      - Low
-      - Medium
-      - High
-    validations:
-      required: false
-- type: markdown
-  attributes:
-    value: |
-      If possible, please attach any relevant mockups, diagrams, or visual aids in a comment after submitting this issue.
+  - type: textarea
+    attributes:
+      label: Detailed Description
+      description: Please provide a more detailed explanation of the feature
+      validations:
+        required: false
+  - type: textarea
+    attributes:
+      label: Use Cases and Benefits
+      description: Describe specific use cases and potential benefits of this feature
+      validations:
+        required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority/Impact
+      options:
+        - Low
+        - Medium
+        - High
+      validations:
+        required: false
+  - type: markdown
+    attributes:
+      value: |
+        If possible, please attach any relevant mockups, diagrams, or visual aids in a comment after submitting this issue.

@@ -31,5 +31,5 @@ jobs:
       - name: Automatically label issues
         uses: actions/labeler@v3
         with:
-          repo-token: "${{ secrets.XEROCODEE_TOKEN }}"
+          repo-token: '${{ secrets.XEROCODEE_TOKEN }}'
           configuration-path: .github/labeler.yml
