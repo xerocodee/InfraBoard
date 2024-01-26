@@ -1,0 +1,35 @@
+name: Assign
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+jobs:
+  slash_assign:
+    if: >
+      (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/assign')) ||
+      github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign the user or unassign stale assignments
+        uses: JasonEtco/slash-assign-action@v0.0.3
+        with:
+          required_label: Up-For-Grab
+          assigned_label: Assigned, InfraBoard, XeroCodee
+          days_until_warning: 7
+          days_until_unassign: 14
+          stale_assignment_label: Open
+
+  auto_label:
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automatically label issues
+        uses: actions/labeler@v3
+        with:
+          repo-token: "${{ secrets.XEROCODEE_TOKEN }}"
+          configuration-path: .github/labeler.yml

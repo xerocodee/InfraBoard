@@ -14,27 +14,29 @@ body:
       options:
         - label: I have searched the existing issues
           required: true
-  - type: textarea
-    attributes:
-      label: Summary
-      description: One paragraph description of the feature
+- type: textarea
+  attributes:
+    label: Detailed Description
+    description: Please provide a more detailed explanation of the feature
     validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Why should this be worked on?
-      description: A concise description of the problems or use cases for this feature request
+      required: false
+- type: textarea
+  attributes:
+    label: Use Cases and Benefits
+    description: Describe specific use cases and potential benefits of this feature
     validations:
-      required: true
-  - type: dropdown
-    id: repository
-    attributes:
-      label: Repository
-      options:
-        - InfraBoard
+      required: false
+- type: dropdown
+  id: priority
+  attributes:
+    label: Priority/Impact
+    options:
+      - Low
+      - Medium
+      - High
     validations:
-      required: true
-  - type: markdown
-    attributes:
-      value: |
-        Please add the respective Label to the Issue
+      required: false
+- type: markdown
+  attributes:
+    value: |
+      If possible, please attach any relevant mockups, diagrams, or visual aids in a comment after submitting this issue.
