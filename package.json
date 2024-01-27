@@ -40,7 +40,7 @@
     "@jsplumb/connector-bezier": "5.13.7",
     "@jsplumb/core": "5.13.7",
     "@jsplumb/util": "5.13.7",
-    "@mantine/core": "^7.4.2",
+    "@mantine/core": "^7.5.0",
     "@mantine/hooks": "^7.4.2",
     "@mantine/next": "^6.0.21",
     "@mui/material": "^5.10.4",
