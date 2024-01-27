@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: kentaro-m/auto-assign-action@v1.1.2
         with:
-          repo-token: ${{ XEROCODEE_TOKEN }}
+          repo-token: ${{ GITHUB }}
