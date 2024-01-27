@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/stale@v4
         with:
-          repo-token: ${{ secrets.XEROCODEE_TOKEN }}
+          repo-token: ${{ secrets.GITHUB }}
 
           # Settings for Stale Issues
           stale-issue-message: 'This issue has been marked as stale due to inactivity for more than 7 days.'
