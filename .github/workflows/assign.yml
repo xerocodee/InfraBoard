@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically label issues
-        uses: actions/labeler@v3
+        uses: actions/labeler@v5
         with:
           repo-token: '${{ secrets.GITHUB }}'
           configuration-path: .github/labeler.yml
