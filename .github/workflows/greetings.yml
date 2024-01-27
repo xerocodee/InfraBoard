@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Congratulate on PR Merge
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: '🌟 @${{ github.event.pull_request.user.login }} Congrats on getting your PR merged! Your contribution means a lot to us. Feel free to pick up another issue and keep up the great work!'
