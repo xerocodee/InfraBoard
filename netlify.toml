@@ -1,0 +1,19 @@
+# netlify.toml
+
+[build]
+  command = "yarn build"
+  functions = "out_functions"
+  publish = "out_public"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  YARN_VERSION = "1.22.21"
+  NODE_VERSION = "14"
+
+[dev]
+  command = "yarn dev"
+
+[install]
+  command = "yarn install --frozen-lockfile"
