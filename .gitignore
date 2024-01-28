@@ -2,7 +2,7 @@
 /node_modules
 /.pnp
 .pnp.js
-package-lock.json # Not typically recommended to ignore
+package-lock.json
 
 # testing
 /coverage
