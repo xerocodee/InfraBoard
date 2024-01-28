@@ -8,7 +8,7 @@ export const checkArray = <T,>(array: any, name: string): T => {
       `Looks like we encountered a bug. The current implementation expects "${name}" to be an array.`
     );
   }
-  return (array as unknown) as T;
+  return array as unknown as T;
 };
 
 export const pruneArray = <T,>(array: (T | undefined)[]): T[] | undefined => {
@@ -24,7 +24,7 @@ export const pruneObject = <T, R = T>(object: T): R | undefined => {
   if (Object.keys(result).length === 0) {
     return undefined;
   }
-  return (result as unknown) as R;
+  return result as unknown as R;
 };
 
 export const pruneString = (value?: string): string | undefined => {
@@ -39,7 +39,7 @@ export const pruneNumber = (value?: number): number | undefined => {
     value === undefined ||
     value === null ||
     isNaN(value) ||
-    ((value as unknown) as string) === ''
+    (value as unknown as string) === ''
   ) {
     return undefined;
   }

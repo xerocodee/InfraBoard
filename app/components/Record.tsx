@@ -58,14 +58,8 @@ const RemoveButton = styled(IconButton)`
 const Record: FunctionComponent<IRecordProps> = (
   props: IRecordProps
 ): ReactElement => {
-  const {
-    fields,
-    index,
-    onRemove,
-    renderLayout,
-    renderField,
-    renderRemove,
-  } = props;
+  const { fields, index, onRemove, renderLayout, renderField, renderRemove } =
+    props;
 
   const handleRemove = useCallback(() => {
     onRemove(index);

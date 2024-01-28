@@ -17,7 +17,7 @@ export interface IRecordFormProps<T extends IFormField> {
 }
 
 export const SuperForm: FunctionComponent<IRecordFormProps<TFinalFormField>> = <
-  T extends IFormField
+  T extends IFormField,
 >(
   props: IRecordFormProps<T>
 ): ReactElement => {

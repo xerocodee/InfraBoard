@@ -381,10 +381,9 @@ export const useJsPlumb = (
       {},
       true
     ) as Connection[];
-    const currentConnectionUuids = (instance.getConnections(
-      {},
-      true
-    ) as Connection[]).map((x) => x.getUuids());
+    const currentConnectionUuids = (
+      instance.getConnections({}, true) as Connection[]
+    ).map((x) => x.getUuids());
 
     currentConnections.forEach((conn: Connection) => {
       const uuids = conn.getUuids();
