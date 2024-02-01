@@ -18,8 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-      - run: npm install --legacy-peer-deps
+          node-version: 18
+      - run: npm ci
       - run: npx prettier --check .
       - run: npx prettier --write .
 
@@ -37,5 +37,5 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm install --legacy-peer-deps
+      - run: npm ci
       - run: npm run build
