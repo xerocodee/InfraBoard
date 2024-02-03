@@ -1,12 +1,19 @@
-name: 'Auto Assign PR'
-
+name: Auto Assign
 on:
+  issues:
+    types: [opened]
   pull_request:
-
+    types: [opened]
 jobs:
-  add-reviews:
+  run:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
-      - uses: kentaro-m/auto-assign-action@v2.0.0
+      - name: 'Auto-assign issue'
+        uses: pozil/auto-assign-issue@v1
         with:
-          repo-token: ${{ GITHUB }}
+          repo-token: ${{ secrets.GITHUB }}
+          assignees: aryasoni98
+          numOfAssignee: 1
