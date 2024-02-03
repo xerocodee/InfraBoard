@@ -40,10 +40,9 @@ body:
     attributes:
       label: Environment
       options:
-        - Stage
-        - Production
-        - Release
-        - Deploy preview
+        - Stage ( Stage Branch )
+        - Production ( Master Branch )
+        - Deploy preview ( Test Branch )
     validations:
       required: false
   - type: dropdown
