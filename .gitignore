@@ -1,9 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
@@ -29,3 +28,27 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# add other files/folders to ignore
+# Example:
+# logs
+/logs
+*.log
+
+# operating system files
+Thumbs.db
+.DS_Store
+
+# editor directories and files
+.vscode
+*.swp
+*.swo
+
+# build files
+/dist
+
+# temporary files
+/tmp
+
+# Local Netlify folder
+.netlify

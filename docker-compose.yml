@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  nextjs-app:
+  infra-board:
     build:
       context: .
       dockerfile: Dockerfile
