@@ -28,6 +28,10 @@ Contributions to InfraBoard can take many forms. Here are some ways you can help
 
 8. **Open a Pull Request**: Go to the InfraBoard repository and open a pull request from your branch.
 
+##### Notes :
+
+To contribute to InfraBoard, always push new features or bug fixes to a feature/bug branch first. Then, raise a pull request (PR) from your feature/bug branch to the test branch for review. It's crucial to target the test branch with your PRs to ensure changes are tested before merging into the master/stage codebase. This approach helps maintain the stability and quality of the project.
+
 ## Coding Guidelines
 
 - Ensure your code adheres to the project's coding standards.
@@ -46,7 +50,7 @@ If you are adding new features or making changes that require documentation upda
 
 ## Code of Conduct
 
-Please note that this project is released with a Contributor Code of Conduct. By participating in this project, you agree to abide by its terms.
+Please note that this project is released with a Contributor [Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
 
 ## Questions?
 

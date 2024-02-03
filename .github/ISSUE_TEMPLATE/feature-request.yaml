@@ -1,31 +1,27 @@
 name: Feature request
-description: Suggest a feature to improve Keploy
+description: Suggest a feature to improve InfraBoard
 title: '[feature]: '
 labels: [Enhancement]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to request a feature for Keploy.
+        Thank you for taking the time to request a feature for InfraBoard.
   - type: checkboxes
     attributes:
       label: Is there an existing feature request for this?
-      description: Please search to see if an issue related to this feature request/feature request already exists.
+      description: Please search to see if an issue related to this feature request already exists.
       options:
         - label: I have searched the existing issues
           required: true
   - type: textarea
     attributes:
       label: Detailed Description
-      description: Please provide a more detailed explanation of the feature
-      validations:
-        required: false
+      description: Please provide a more detailed explanation of the feature.
   - type: textarea
     attributes:
       label: Use Cases and Benefits
-      description: Describe specific use cases and potential benefits of this feature
-      validations:
-        required: false
+      description: Describe specific use cases and potential benefits of this feature.
   - type: dropdown
     id: priority
     attributes:
@@ -34,8 +30,6 @@ body:
         - Low
         - Medium
         - High
-      validations:
-        required: false
   - type: markdown
     attributes:
       value: |

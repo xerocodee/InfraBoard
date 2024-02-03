@@ -10,7 +10,6 @@ const Canvas = () => {
   const [_initX, _setInitX] = useState(0)
   const [_initY, _setInitY] = useState(0)
   const [showBackgroundImage, setShowBackgroundImage] = useState(true)
-  // const [backgroundSize, setBackgroundSize] = useState('16px');
   const [backgroundSizeX, setBackgroundSizeX] = useState('16px')
   const [backgroundSizeY, setBackgroundSizeY] = useState('16px')
 

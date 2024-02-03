@@ -1,8 +1,8 @@
 // Import necessary packages
-import React, { useState } from 'react'
+import React from 'react'
 import { useDrag } from 'react-dnd'
-import { IoCubeOutline, IoCalculatorOutline, IoSearch } from 'react-icons/io5'
-import { Tooltip, Select } from '@mantine/core'
+import { IoCalculatorOutline } from 'react-icons/io5'
+import { Tooltip } from '@mantine/core'
 
 interface SubTabInterface {
   id?: string

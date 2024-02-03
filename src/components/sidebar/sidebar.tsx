@@ -61,9 +61,9 @@ export default function SideBar() {
   }
 
   const [{ isDragging }, drag] = useDrag({
-    type: 'SUBTAB', // Define a type for the drag operation
+    type: 'SUBTAB',
     item: {
-      subTab: activeSubList, // Pass the subtab information as the item being dragged
+      subTab: activeSubList,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),

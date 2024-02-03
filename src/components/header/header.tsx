@@ -1,8 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { Avatar, Button, Tooltip } from '@mantine/core'
-import { IoAddCircleOutline, IoHelpBuoyOutline } from 'react-icons/io5'
-import { RiGraduationCapFill, RiArrowDropDownLine } from 'react-icons/ri'
+import { Button, Tooltip } from '@mantine/core'
+import { IoAddCircleOutline } from 'react-icons/io5'
 import { IoIosRocket } from 'react-icons/io'
 import { FiPenTool } from 'react-icons/fi'
 
