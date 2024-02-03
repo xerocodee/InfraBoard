@@ -35,3 +35,4 @@ jobs:
           git add SCORES.md
           git commit -m "Update scores" || exit 0
           git push
+          git push https://${{ secrets.GITHUB }}@github.com/xerocodee/InfraBoard.git master
