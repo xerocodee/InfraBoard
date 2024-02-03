@@ -1,0 +1,24 @@
+name: PR Merge Score Updater
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-score:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Score in Markdown File
+        run: |
+          SCORE=5
+          USER=${{ github.event.pull_request.user.login }}
+          FILE_PATH="./SCORES.md"
+          if ! grep -q $USER $FILE_PATH; then
+            echo "$USER: $SCORE" >> $FILE_PATH
+          else
+            sed -i "s/\($USER: \)\([0-9]*\)/echo \1\$((\2+SCORE))/e" $FILE_PATH
+        shell: bash

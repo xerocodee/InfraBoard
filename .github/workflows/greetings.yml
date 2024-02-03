@@ -1,0 +1,31 @@
+name: Greetings
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [closed]
+  pull_request:
+    types: [opened]
+
+jobs:
+  greet-new-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet New Contributors for Creating New Issues or PRs
+        uses: actions/first-interaction@v1
+        if: github.event.action == 'opened'
+        with:
+          repo-token: ${{ secrets.GITHUB }}
+          issue-message: '🎉 @${{ github.actor }} Welcome to InfraBoard! Thanks for opening this issue. We appreciate your contribution. Feel free to take a lead on this by self-assigning. **Use `/assign` to self-assign this issue**.'
+          pr-message: "🚀 @${{ github.actor }} Thank you for your pull request! Our team will review it soon. Please ensure that you've linked the issue your PR addresses. Your patience is greatly appreciated!"
+
+  congratulate-merge:
+    if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Congratulate on PR Merge
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: '🌟 @${{ github.event.pull_request.user.login }} Congrats on getting your PR merged! Your contribution means a lot to us. Feel free to pick up another issue and keep up the great work!'
