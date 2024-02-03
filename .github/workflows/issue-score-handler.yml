@@ -1,0 +1,33 @@
+name: Issue Score Handler
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label-and-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB}}
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['Score 5, InfraBoard, XeroCodee']
+            })
+
+      - name: Comment on issue
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thank you for submitting an issue! Each issue will be manually reviewed for scoring.'
+            })
