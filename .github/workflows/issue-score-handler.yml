@@ -17,7 +17,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              {"labels": ["Score 5", "InfraBoard", "XeroCodee"]}
+              labels: ['Score 5', 'InfraBoard', 'XeroCodee']
             })
 
       - name: Comment on issue
