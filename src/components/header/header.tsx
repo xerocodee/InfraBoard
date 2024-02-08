@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50">
+      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50 h-[4rem]">
         <Button
           leftSection={<IoAddCircleOutline size={20} />}
           color="#714eff"

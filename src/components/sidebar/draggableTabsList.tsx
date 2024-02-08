@@ -46,7 +46,7 @@ const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
         cursor: 'move',
       }}
     >
-      <div className="w-full flex flex-col justify-center gap-1 items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
+      <div className="w-full flex flex-col justify-center gap-1 items-center  h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
         {Icon ? (
           <Icon className="" />
         ) : (

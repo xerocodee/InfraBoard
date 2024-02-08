@@ -65,7 +65,7 @@ const Drag = ({
 
   return (
     <Draggable handle=".drag-handle " position={position} onDrag={handleDrag}>
-      <div className="flex  w-[50%] z-[9999]">
+      <div className="flex  w-[50%] z-[9999] absolute">
         <div className=" flex  border rounded-lg shadow-xl items-center bg-white z-20">
           <PiDotsSixVerticalBold
             className="drag-handle cursor-move"

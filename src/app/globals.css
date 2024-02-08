@@ -4,7 +4,7 @@
 
 * {
   scrollbar-color: #464646 #282c34;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {

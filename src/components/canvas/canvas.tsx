@@ -1,9 +1,14 @@
 'use client'
-
 import React, { useState } from 'react'
 import Drag from '../drag'
 import { useDrop } from 'react-dnd'
-const Canvas = () => {
+import { DroppedItem } from '@/types/types';
+
+interface CanvasProps {
+  onItemDrop: (newItem: DroppedItem) => void;
+  droppedItems: DroppedItem[];
+}
+const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
   const [_scale, _setScale] = useState(1)
   const [_left, _setLeft] = useState(0)
   const [_top, _setTop] = useState(0)
@@ -49,27 +54,16 @@ const Canvas = () => {
     }))
   }
 
-  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
-  interface DroppedItem {
-    subTab: {
-      title: string
-      icon?: any
-      subList: any[]
-    }
-    position: { x: number; y: number }
-  }
   const [, drop] = useDrop({
     accept: 'SUBTAB',
     drop: (item, monitor) => {
       if (!monitor) {
-        return
+        return;
       }
 
-      const clientOffset = monitor.getClientOffset()
-      console.log(clientOffset)
-
+      const clientOffset = monitor.getClientOffset();
       if (!clientOffset) {
-        return
+        return;
       }
 
       const newItem: DroppedItem = {
@@ -78,11 +72,12 @@ const Canvas = () => {
           x: clientOffset.x,
           y: clientOffset.y,
         },
-      }
+      };
 
-      setDroppedItems((prevItems) => [...prevItems, newItem])
+      // Call the callback to update the common state
+      onItemDrop(newItem);
     },
-  })
+  });
 
   return (
     <div
@@ -98,7 +93,10 @@ const Canvas = () => {
         handleZoomOut={handleZoomOut}
         handleFitContent={handleFitContent}
       />
-      <div ref={drop} className="h-[50vh] w-[100vw] -z-1">
+      <div
+        ref={drop}
+        className="h-[calc(100vh-4rem)] w-[100vw] -z-1 bg-gray-50"
+      >
         {droppedItems.map((droppedItem, index) => (
           <div
             key={index}
