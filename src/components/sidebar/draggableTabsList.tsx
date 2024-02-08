@@ -12,8 +12,6 @@ interface SubTabInterface {
 }
 
 const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
-  console.log(Icon)
-
   const [{ isDragging }, drag] = useDrag({
     type: 'SUBTAB',
     item: {

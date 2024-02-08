@@ -9,19 +9,19 @@ import { useState } from 'react'
 
 interface DroppedItem {
   subTab: {
-    title: string;
-    icon?: any;
-    subList: any[];
-  };
-  position: { x: number; y: number };
+    title: string
+    icon?: any
+    subList: any[]
+  }
+  position: { x: number; y: number }
 }
 
 export default function Home() {
-  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([]);
+  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
 
   const handleItemDrop = (newItem: DroppedItem) => {
-    setDroppedItems((prevItems) => [...prevItems, newItem]);
-  };
+    setDroppedItems((prevItems) => [...prevItems, newItem])
+  }
   return (
     <main>
       <DndProvider backend={HTML5Backend}>

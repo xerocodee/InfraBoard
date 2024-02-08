@@ -6,8 +6,9 @@ import SubTab from './draggableTabsList'
 const SubTabs = ({ open, setOpen, openSearchResults, activeSubList }: any) => {
   return (
     <div
-      className={`w-full min-h-full ${(!open || openSearchResults) && 'hidden'
-        }`}
+      className={`w-full min-h-full ${
+        (!open || openSearchResults) && 'hidden'
+      }`}
     >
       <p className="text-lg text-gray-800 font-medium py-2 bg-gray-50 my-2 flex items-center gap-1">
         <GrFormPreviousLink
@@ -27,11 +28,7 @@ const SubTabs = ({ open, setOpen, openSearchResults, activeSubList }: any) => {
         </p>
         <ul className="space-y-2 ml-5">
           {activeSubList?.subList?.map((item: any, index: number) => (
-            <SubTab
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
+            <SubTab key={item.title} title={item.title} icon={item.icon} />
           ))}
         </ul>
       </div>

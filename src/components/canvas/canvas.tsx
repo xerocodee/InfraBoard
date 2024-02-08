@@ -2,11 +2,12 @@
 import React, { useState } from 'react'
 import Drag from '../drag'
 import { useDrop } from 'react-dnd'
-import { DroppedItem } from '@/types/types';
-
+import { DroppedItem } from '@/types/types'
+import { Resizable, ResizableBox } from 'react-resizable'
+import { url } from 'inspector'
 interface CanvasProps {
-  onItemDrop: (newItem: DroppedItem) => void;
-  droppedItems: DroppedItem[];
+  onItemDrop: (newItem: DroppedItem) => void
+  droppedItems: DroppedItem[]
 }
 const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
   const [_scale, _setScale] = useState(1)
@@ -58,12 +59,12 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
     accept: 'SUBTAB',
     drop: (item, monitor) => {
       if (!monitor) {
-        return;
+        return
       }
 
-      const clientOffset = monitor.getClientOffset();
+      const clientOffset = monitor.getClientOffset()
       if (!clientOffset) {
-        return;
+        return
       }
 
       const newItem: DroppedItem = {
@@ -72,21 +73,15 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
           x: clientOffset.x,
           y: clientOffset.y,
         },
-      };
+      }
 
       // Call the callback to update the common state
-      onItemDrop(newItem);
+      onItemDrop(newItem)
     },
-  });
+  })
 
   return (
-    <div
-      className="jsplumb-box"
-      style={{
-        backgroundImage:
-          'linear-gradient(to right, #80808014 1px, transparent 1px), linear-gradient(to bottom, #80808014 1px, transparent 1px)',
-      }}
-    >
+    <div>
       <Drag
         setShowBackgroundImage={setShowBackgroundImage}
         handleZoomIn={handleZoomIn}
@@ -95,11 +90,20 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
       />
       <div
         ref={drop}
-        className="h-[calc(100vh-4rem)] w-[100vw] -z-1 bg-gray-50"
+        className="h-[calc(100vh-4rem)] w-[100vw] -z-1"
+        style={{
+          backgroundImage: ' radial-gradient(#b9b9b9 1px, transparent 0)',
+          backgroundSize: '20px 20px',
+        }}
       >
         {droppedItems.map((droppedItem, index) => (
-          <div
+          <ResizableBox
             key={index}
+            width={200} // Set your initial width here
+            height={150} // Set your initial height here
+            onResize={(e, data) => {
+              // Handle resizing logic if needed
+            }}
             style={{
               position: 'absolute',
               top: droppedItem.position.y,
@@ -113,7 +117,7 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
           >
             <h3>{droppedItem.subTab.title}</h3>
             {/* Render the subList items */}
-          </div>
+          </ResizableBox>
         ))}
       </div>
     </div>
