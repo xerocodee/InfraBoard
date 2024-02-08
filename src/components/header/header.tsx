@@ -1,8 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { Avatar, Button, Tooltip } from '@mantine/core'
-import { IoAddCircleOutline, IoHelpBuoyOutline } from 'react-icons/io5'
-import { RiGraduationCapFill, RiArrowDropDownLine } from 'react-icons/ri'
+import { Button, Tooltip } from '@mantine/core'
+import { IoAddCircleOutline } from 'react-icons/io5'
 import { IoIosRocket } from 'react-icons/io'
 import { FiPenTool } from 'react-icons/fi'
 
@@ -15,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50">
+      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50 h-[4rem]">
         <Button
           leftSection={<IoAddCircleOutline size={20} />}
           color="#714eff"

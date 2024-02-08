@@ -8,8 +8,7 @@ import { TfiLocationArrow } from 'react-icons/tfi'
 import { MdGridOn } from 'react-icons/md'
 import { RiZoomInLine, RiZoomOutLine } from 'react-icons/ri'
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2'
-import { LuRedo, LuUndo, LuKeyboard } from 'react-icons/lu'
-import { FiFileText } from 'react-icons/fi'
+import { LuRedo, LuUndo } from 'react-icons/lu'
 import { Tooltip } from '@mantine/core'
 import Draggable from 'react-draggable'
 import { BsPlusSquareDotted } from 'react-icons/bs'
@@ -66,7 +65,7 @@ const Drag = ({
 
   return (
     <Draggable handle=".drag-handle " position={position} onDrag={handleDrag}>
-      <div className="flex  w-[50%] z-[9999]">
+      <div className="flex  w-[50%] z-[9999] absolute">
         <div className=" flex  border rounded-lg shadow-xl items-center bg-white z-20">
           <PiDotsSixVerticalBold
             className="drag-handle cursor-move"

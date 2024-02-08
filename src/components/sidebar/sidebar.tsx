@@ -17,7 +17,9 @@ import {
 import { leftSideBarData } from '@/store/leftSideBarData'
 import { useState } from 'react'
 import { useDrag } from 'react-dnd'
-import SubTab from './sidebarDrag'
+import SubTab from './draggableTabsList'
+import SubTabs from './subTabs'
+import SearchResults from './searchResults'
 
 interface SubTabInterface {
   id: string
@@ -61,9 +63,9 @@ export default function SideBar() {
   }
 
   const [{ isDragging }, drag] = useDrag({
-    type: 'SUBTAB', // Define a type for the drag operation
+    type: 'SUBTAB',
     item: {
-      subTab: activeSubList, // Pass the subtab information as the item being dragged
+      subTab: activeSubList,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
@@ -207,155 +209,88 @@ export default function SideBar() {
               <Accordion defaultValue="customization" className="w-full ">
                 {selectedProvider &&
                   leftSideBarData[selectedProvider].tabs.map(
-                    ({ title: parentTitle, icon: Icon, subTabs }: any) => (
-                      <Accordion.Item
-                        value={parentTitle}
-                        key={parentTitle}
-                        className={`${(open || openSearchResults) && 'hidden'}`}
-                      >
-                        <Accordion.Control>
-                          <span className="flex  items-center font-semibold gap-2">
-                            <Icon />
-                            {parentTitle}
-                          </span>{' '}
-                        </Accordion.Control>
-                        <Accordion.Panel>
-                          <div className="grid grid-cols-3 gap-2 place-content-center py-4 ">
-                            {subTabs.map(
-                              ({
-                                title,
-                                icon: Icon,
-                                subList,
-                              }: SubTabInterface) => (
-                                <Tooltip
-                                  key={title}
-                                  label={title}
-                                  withArrow
-                                  transitionProps={{
-                                    transition: 'fade',
-                                    duration: 200,
-                                  }}
-                                  className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
-                                  position="right"
-                                  arrowSize={6}
-                                  color="#fff"
-                                >
-                                  <div
-                                    className="w-full flex flex-col justify-center gap-1  items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50"
-                                    onClick={() =>
-                                      openSubMenu({
-                                        parentIcon: Icon,
-                                        parentTitle: parentTitle,
-                                        subTitle: title,
-                                        subList: subList,
-                                      })
-                                    }
-                                  >
-                                    {Icon ? (
-                                      <Icon className="" />
-                                    ) : (
-                                      <IoCalculatorOutline className="text-5xl mx-auto p-1" />
-                                    )}
-                                    <p className="truncate text-xs w-4/5   text-center">
-                                      {title}
-                                    </p>
-                                  </div>
-                                </Tooltip>
-                              ),
-                            )}
-                          </div>
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                    ),
+                    ({
+                      title: parentTitle,
+                      icon: ParentIcon,
+                      subTabs,
+                    }: any) => {
+                      return (
+                        <Accordion.Item
+                          value={parentTitle}
+                          key={parentTitle}
+                          className={`${(open || openSearchResults) && 'hidden'}`}
+                        >
+                          <Accordion.Control>
+                            <span className="flex  items-center font-semibold gap-2">
+                              {ParentIcon && <ParentIcon />}
+                              {parentTitle}
+                            </span>{' '}
+                          </Accordion.Control>
+                          <Accordion.Panel>
+                            <div className="grid grid-cols-3 gap-2 place-content-center py-4 ">
+                              {subTabs.map(
+                                ({
+                                  title,
+                                  icon: Icon,
+                                  subList,
+                                }: SubTabInterface) => {
+                                  return (
+                                    <Tooltip
+                                      key={title}
+                                      label={title}
+                                      withArrow
+                                      transitionProps={{
+                                        transition: 'fade',
+                                        duration: 200,
+                                      }}
+                                      className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
+                                      position="right"
+                                      arrowSize={6}
+                                      color="#ffffff"
+                                    >
+                                      <div
+                                        className="w-full flex flex-col justify-center gap-1  items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50"
+                                        onClick={() =>
+                                          openSubMenu({
+                                            parentIcon: Icon,
+                                            parentTitle: parentTitle,
+                                            subTitle: title,
+                                            subList: subList,
+                                          })
+                                        }
+                                      >
+                                        {Icon ? (
+                                          <Icon className="rounded-md" />
+                                        ) : (
+                                          <IoCalculatorOutline className="text-5xl mx-auto p-1 rounded-md" />
+                                        )}
+                                        <p className="truncate text-xs w-4/5  text-center">
+                                          {title}
+                                        </p>
+                                      </div>
+                                    </Tooltip>
+                                  )
+                                },
+                              )}
+                            </div>
+                          </Accordion.Panel>
+                        </Accordion.Item>
+                      )
+                    },
                   )}
-
                 {/* Subtabs options */}
-
-                <div
-                  className={`w-full min-h-full ${
-                    (!open || openSearchResults) && 'hidden'
-                  }`}
-                >
-                  <p className="text-lg text-gray-800 font-medium py-2 bg-gray-50 my-2 flex items-center gap-1">
-                    <GrFormPreviousLink
-                      className="text-2xl"
-                      onClick={() => setOpen(false)}
-                    />{' '}
-                    {activeSubList?.parentTitle}
-                  </p>
-                  <p className=" text-gray-800 font-medium flex items-center gap-5 py-5 text-md">
-                    <IoCalculatorOutline className="text-lg" />
-                    {activeSubList?.subTitle}
-                  </p>
-                  <hr className=" bg-black w-full" />
-                  <div>
-                    <p className="text-md text-gray-600 py-1">
-                      {activeSubList?.specialHeading}
-                    </p>
-                    <ul className="space-y-2 ml-5">
-                      {activeSubList?.subList?.map(
-                        (item: any, index: number) => (
-                          <SubTab key={item.title} title={item.title} />
-                        ),
-                      )}
-                    </ul>
-                  </div>
-                </div>
-
+                <SubTabs
+                  open={open}
+                  setOpen={setOpen}
+                  openSearchResults={openSearchResults}
+                  activeSubList={activeSubList}
+                />
                 {/* Search Results */}
-
-                <div
-                  className={`w-full min-h-full ${
-                    !openSearchResults && 'hidden'
-                  } `}
-                >
-                  {searchResults.map((item: any) => (
-                    <div key={item?.category}>
-                      <p className=" text-gray-800 font-medium flex items-center gap-5 py-5 text-md">
-                        <IoCalculatorOutline className="text-lg" />
-                        {item?.category}
-                      </p>
-                      <hr className=" bg-black w-full" />
-                      <div>
-                        <p className="text-md text-gray-600 py-1">
-                          {activeSubList?.specialHeading}
-                        </p>
-                        <ul className="space-y-2 ml-5">
-                          {item?.subTabs?.map((item: any, index: number) => (
-                            <li key={index}>
-                              <Tooltip
-                                withArrow
-                                label={item.title}
-                                transitionProps={{
-                                  transition: 'fade',
-                                  duration: 200,
-                                }}
-                                className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
-                                position="right"
-                                arrowSize={6}
-                                color="#fff"
-                              >
-                                <div className="flex items-center gap-2 ">
-                                  <div>
-                                    <IoCalculatorOutline className="text-2xl" />
-                                  </div>
-                                  <div className="overflow-hidden">
-                                    <p className="font-medium truncate  ">
-                                      {item.title}
-                                    </p>
-                                    <p className="truncate text-xs ">
-                                      {item.desc}
-                                    </p>
-                                  </div>
-                                </div>
-                              </Tooltip>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <SearchResults
+                  openSearchResults={openSearchResults}
+                  searchResults={searchResults}
+                  activeSubList={activeSubList}
+                />
               </Accordion>
             </nav>
           </div>

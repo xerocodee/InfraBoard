@@ -1,8 +1,8 @@
 // Import necessary packages
-import React, { useState } from 'react'
+import React from 'react'
 import { useDrag } from 'react-dnd'
-import { IoCubeOutline, IoCalculatorOutline, IoSearch } from 'react-icons/io5'
-import { Tooltip, Select } from '@mantine/core'
+import { IoCalculatorOutline } from 'react-icons/io5'
+import { Tooltip } from '@mantine/core'
 
 interface SubTabInterface {
   id?: string
@@ -12,8 +12,6 @@ interface SubTabInterface {
 }
 
 const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
-  console.log(Icon)
-
   const [{ isDragging }, drag] = useDrag({
     type: 'SUBTAB',
     item: {
@@ -46,7 +44,7 @@ const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
         cursor: 'move',
       }}
     >
-      <div className="w-full flex flex-col justify-center gap-1 items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
+      <div className="w-full flex flex-col justify-center gap-1 items-center  h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
         {Icon ? (
           <Icon className="" />
         ) : (

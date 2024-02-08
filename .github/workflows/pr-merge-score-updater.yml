@@ -1,0 +1,38 @@
+name: PR Merge Score Updater
+
+on:
+  pull_request_target:
+    types: [closed]
+
+jobs:
+  update-score:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: 'master'
+
+      - name: Update Score in Markdown File
+        run: |
+          SCORE=5
+          USER="${{ github.event.pull_request.user.login }}"
+          FILE_PATH="./SCORES.md"
+          touch $FILE_PATH
+          if grep -q "^$USER: " $FILE_PATH; then
+              awk -v user="$USER" -v score=$SCORE 'BEGIN{FS=OFS=": "}{if ($1 == user) $2 += score; print}' $FILE_PATH > temp && mv temp $FILE_PATH
+          else
+              echo "$USER: $SCORE" >> $FILE_PATH
+          fi
+
+        shell: bash
+
+      - name: Commit and push if SCORES.md has changes
+        run: |
+          git config --local user.email "aryasoni98@gmail.com"
+          git config --local user.name "Arya Soni"
+          git add SCORES.md
+          git commit -m "Update scores" || exit 0
+          git push
+          git push https://${{ secrets.GITHUB }}@github.com/xerocodee/InfraBoard.git master

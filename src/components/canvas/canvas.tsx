@@ -1,16 +1,21 @@
 'use client'
-
 import React, { useState } from 'react'
 import Drag from '../drag'
 import { useDrop } from 'react-dnd'
-const Canvas = () => {
+import { DroppedItem } from '@/types/types'
+import { Resizable, ResizableBox } from 'react-resizable'
+import { url } from 'inspector'
+interface CanvasProps {
+  onItemDrop: (newItem: DroppedItem) => void
+  droppedItems: DroppedItem[]
+}
+const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
   const [_scale, _setScale] = useState(1)
   const [_left, _setLeft] = useState(0)
   const [_top, _setTop] = useState(0)
   const [_initX, _setInitX] = useState(0)
   const [_initY, _setInitY] = useState(0)
   const [showBackgroundImage, setShowBackgroundImage] = useState(true)
-  // const [backgroundSize, setBackgroundSize] = useState('16px');
   const [backgroundSizeX, setBackgroundSizeX] = useState('16px')
   const [backgroundSizeY, setBackgroundSizeY] = useState('16px')
 
@@ -50,15 +55,6 @@ const Canvas = () => {
     }))
   }
 
-  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
-  interface DroppedItem {
-    subTab: {
-      title: string
-      icon?: any
-      subList: any[]
-    }
-    position: { x: number; y: number }
-  }
   const [, drop] = useDrop({
     accept: 'SUBTAB',
     drop: (item, monitor) => {
@@ -67,8 +63,6 @@ const Canvas = () => {
       }
 
       const clientOffset = monitor.getClientOffset()
-      console.log(clientOffset)
-
       if (!clientOffset) {
         return
       }
@@ -81,28 +75,35 @@ const Canvas = () => {
         },
       }
 
-      setDroppedItems((prevItems) => [...prevItems, newItem])
+      // Call the callback to update the common state
+      onItemDrop(newItem)
     },
   })
 
   return (
-    <div
-      className="jsplumb-box"
-      style={{
-        backgroundImage:
-          'linear-gradient(to right, #80808014 1px, transparent 1px), linear-gradient(to bottom, #80808014 1px, transparent 1px)',
-      }}
-    >
+    <div>
       <Drag
         setShowBackgroundImage={setShowBackgroundImage}
         handleZoomIn={handleZoomIn}
         handleZoomOut={handleZoomOut}
         handleFitContent={handleFitContent}
       />
-      <div ref={drop} className="h-[50vh] w-[100vw] -z-1">
+      <div
+        ref={drop}
+        className="h-[calc(100vh-4rem)] w-[100vw] -z-1"
+        style={{
+          backgroundImage: ' radial-gradient(#b9b9b9 1px, transparent 0)',
+          backgroundSize: '20px 20px',
+        }}
+      >
         {droppedItems.map((droppedItem, index) => (
-          <div
+          <ResizableBox
             key={index}
+            width={200} // Set your initial width here
+            height={150} // Set your initial height here
+            onResize={(e, data) => {
+              // Handle resizing logic if needed
+            }}
             style={{
               position: 'absolute',
               top: droppedItem.position.y,
@@ -116,7 +117,7 @@ const Canvas = () => {
           >
             <h3>{droppedItem.subTab.title}</h3>
             {/* Render the subList items */}
-          </div>
+          </ResizableBox>
         ))}
       </div>
     </div>

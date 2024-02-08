@@ -8,9 +8,11 @@ import ElasticBeanStalkIcon from './compute/elasticBeanStalkIcon'
 import ImageBuilderIcon from './compute/imageBuilderIcon'
 import LambdaIcon from './compute/lambdaIcon'
 import LightSailIcon from './compute/sailIcon'
+
 // Network
 import GateWayIcon from './network/gateWayIcon'
 import VpcIcon from './network/vpcIcon'
+
 //Tools
 import BudgetIcon from './tools/budgetIcon'
 import CostExplorerIcon from './tools/costExplorerIcon'
@@ -41,9 +43,11 @@ const AWSIcons = {
   ImageBuilderIcon,
   LambdaIcon,
   LightSailIcon,
+
   // Network
   GateWayIcon,
   VpcIcon,
+
   // Tools
   BudgetIcon,
   CostExplorerIcon,
