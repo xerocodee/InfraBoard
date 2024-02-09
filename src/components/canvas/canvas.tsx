@@ -1,9 +1,17 @@
 'use client'
-
 import React, { useState } from 'react'
 import Drag from '../drag'
 import { useDrop } from 'react-dnd'
-const Canvas = () => {
+import { DroppedItem } from '@/types/types'
+import { ResizableBox } from 'react-resizable'
+import '@/styles/resizable.css'
+import Draggable from 'react-draggable'
+import { IoCalculatorOutline } from 'react-icons/io5'
+interface CanvasProps {
+  onItemDrop: (newItem: DroppedItem) => void
+  droppedItems: DroppedItem[]
+}
+const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
   const [_scale, _setScale] = useState(1)
   const [_left, _setLeft] = useState(0)
   const [_top, _setTop] = useState(0)
@@ -49,25 +57,14 @@ const Canvas = () => {
     }))
   }
 
-  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
-  interface DroppedItem {
-    subTab: {
-      title: string
-      icon?: any
-      subList: any[]
-    }
-    position: { x: number; y: number }
-  }
   const [, drop] = useDrop({
     accept: 'SUBTAB',
-    drop: (item, monitor) => {
+    drop: (item: any, monitor: any) => {
       if (!monitor) {
         return
       }
 
       const clientOffset = monitor.getClientOffset()
-      console.log(clientOffset)
-
       if (!clientOffset) {
         return
       }
@@ -80,43 +77,71 @@ const Canvas = () => {
         },
       }
 
-      setDroppedItems((prevItems) => [...prevItems, newItem])
+      // Call the callback to update the common state
+      onItemDrop(newItem)
     },
   })
 
   return (
-    <div
-      className="jsplumb-box"
-      style={{
-        backgroundImage:
-          'linear-gradient(to right, #80808014 1px, transparent 1px), linear-gradient(to bottom, #80808014 1px, transparent 1px)',
-      }}
-    >
-      <Drag
-        setShowBackgroundImage={setShowBackgroundImage}
-        handleZoomIn={handleZoomIn}
-        handleZoomOut={handleZoomOut}
-        handleFitContent={handleFitContent}
-      />
-      <div ref={drop} className="h-[50vh] w-[100vw] -z-1">
-        {droppedItems.map((droppedItem, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'absolute',
-              top: droppedItem.position.y,
-              left: droppedItem.position.x,
-              border: '1px solid #ccc',
-              padding: '10px',
-              borderRadius: '5px',
-              backgroundColor: '#fff',
-              boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <h3>{droppedItem.subTab.title}</h3>
-            {/* Render the subList items */}
-          </div>
-        ))}
+    <div>
+      <div
+        ref={drop}
+        className="h-[calc(100vh-4rem)] w-[100vw] -z-1"
+        style={{
+          backgroundImage: ' radial-gradient(#b9b9b9 1px, transparent 0)',
+          backgroundSize: '20px 20px',
+        }}
+      >
+        <Drag
+          setShowBackgroundImage={setShowBackgroundImage}
+          handleZoomIn={handleZoomIn}
+          handleZoomOut={handleZoomOut}
+          handleFitContent={handleFitContent}
+        />
+        {droppedItems.map((droppedItem, index) => {
+          console.log(droppedItem.subTab.icon)
+          const Icon = droppedItem.subTab.icon
+          return (
+            <Draggable
+              key={index}
+              defaultPosition={{
+                x: droppedItem.position.x,
+                y: droppedItem.position.y,
+              }}
+              onStop={(e, data) => {
+                // Handle dragging logic if needed
+              }}
+            >
+              <ResizableBox
+                width={70}
+                height={70}
+                minConstraints={[50, 50]}
+                maxConstraints={[150, 150]}
+                onResize={(e, data) => {
+                  // Handle resizing logic if needed
+                }}
+                lockAspectRatio={true}
+                style={{
+                  position: 'absolute',
+                  border: '1px solid #ccc',
+                  padding: '10px',
+                  borderRadius: '5px',
+                  backgroundColor: '#fff',
+                  boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                }}
+              >
+                <div className="flex w-full justify-center items-center">
+                  {Icon ? (
+                    <Icon className="w-full h-full" />
+                  ) : (
+                    <IoCalculatorOutline className="w-full h-full" />
+                  )}
+                </div>
+                {/* Render the subList items */}
+              </ResizableBox>
+            </Draggable>
+          )
+        })}
       </div>
     </div>
   )

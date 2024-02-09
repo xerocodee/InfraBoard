@@ -11,6 +11,7 @@ const compute = {
       subList: [
         {
           id: '1',
+          icon: AWSIcons.AppRunnerIcon,
           title: 'Apprunner Auto Scaling Configuration Version',
           desc: 'aws_apprunner_auto_scaling_configuration',
         },
