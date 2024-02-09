@@ -18,7 +18,6 @@ interface DroppedItem {
 
 export default function Home() {
   const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
-
   const handleItemDrop = (newItem: DroppedItem) => {
     setDroppedItems((prevItems) => [...prevItems, newItem])
   }

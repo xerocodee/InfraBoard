@@ -5,7 +5,6 @@ import {
   IoSearch,
   IoCalculatorOutline,
 } from 'react-icons/io5'
-import { GrFormPreviousLink } from 'react-icons/gr'
 import {
   SegmentedControl,
   Select,
