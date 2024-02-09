@@ -16,7 +16,6 @@ import ReadmeModal from '../modals/ReadmeModal'
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 
@@ -87,10 +86,10 @@ const Drag = ({
                     Return to initial position
                   </p>
                 </TooltipContent>
-                <TooltipTrigger>
-                  <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                <TooltipTrigger asChild>
+                  <span className="m-1 p-2 block  text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                     <IoMdReturnLeft />
-                  </div>
+                  </span>
                 </TooltipTrigger>
               </Tooltip>
             </div>
@@ -102,10 +101,10 @@ const Drag = ({
                   Switch to move mode
                 </p>
               </TooltipContent>
-              <TooltipTrigger>
-                <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                   <FaRegHand onClick={handleModeToggle} />
-                </div>
+                </span>
               </TooltipTrigger>
             </Tooltip>
           ) : (
@@ -115,10 +114,10 @@ const Drag = ({
                   Switch to select mode
                 </p>
               </TooltipContent>
-              <TooltipTrigger>
-                <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                   <TfiLocationArrow onClick={handleModeToggle} />
-                </div>
+                </span>
               </TooltipTrigger>
             </Tooltip>
           )}
@@ -129,10 +128,10 @@ const Drag = ({
                   Change the grid into dots
                 </p>
               </TooltipContent>
-              <TooltipTrigger>
-                <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                   <MdGridOn onClick={handleModeToggleGrid} />
-                </div>
+                </span>
               </TooltipTrigger>
             </Tooltip>
           ) : (
@@ -142,10 +141,10 @@ const Drag = ({
                   Change the grid into squares
                 </p>
               </TooltipContent>
-              <TooltipTrigger>
-                <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                   <BsPlusSquareDotted onClick={handleModeToggleGrid} />
-                </div>
+                </span>
               </TooltipTrigger>
             </Tooltip>
           )}
@@ -155,13 +154,13 @@ const Drag = ({
                 Zoom in (+)
               </p>
             </TooltipContent>
-            <TooltipTrigger>
-              <div
-                className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
                 onClick={handleZoomInIcon}
               >
                 <RiZoomInLine />
-              </div>
+              </span>
             </TooltipTrigger>
           </Tooltip>
           <Tooltip>
@@ -170,13 +169,13 @@ const Drag = ({
                 Fit content in the view
               </p>
             </TooltipContent>
-            <TooltipTrigger>
-              <div
-                className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
                 onClick={handleFitContentIcon}
               >
                 <HiOutlineViewfinderCircle />
-              </div>
+              </span>
             </TooltipTrigger>
           </Tooltip>
           <Tooltip>
@@ -185,13 +184,13 @@ const Drag = ({
                 Zoom out (-)
               </p>
             </TooltipContent>
-            <TooltipTrigger>
-              <div
-                className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
                 onClick={handleZoomOutIcon}
               >
                 <RiZoomOutLine />
-              </div>
+              </span>
             </TooltipTrigger>
           </Tooltip>
           <Tooltip>
@@ -200,10 +199,10 @@ const Drag = ({
                 Undo (CTRL + Z)
               </p>
             </TooltipContent>
-            <TooltipTrigger>
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+            <TooltipTrigger asChild>
+              <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                 <LuUndo />
-              </div>
+              </span>
             </TooltipTrigger>
           </Tooltip>
           <Tooltip>
@@ -212,10 +211,10 @@ const Drag = ({
                 Redo (CTRL + shift + Z)
               </p>
             </TooltipContent>
-            <TooltipTrigger>
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+            <TooltipTrigger asChild>
+              <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
                 <LuRedo />
-              </div>
+              </span>
             </TooltipTrigger>
           </Tooltip>
           <ReadmeModal />

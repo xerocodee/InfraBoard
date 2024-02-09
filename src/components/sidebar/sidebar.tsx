@@ -89,77 +89,72 @@ export default function SideBar() {
           <div className=" flex-1 flex flex-col items-center sm:flex-row md:flex-col justify-end w-full">
             <nav className="flex md:flex-1 flex-col sm:flex-row md:flex-col items-center md:space-y-2 w-full">
               <div className="grid grid-cols-3 w-full gap-2">
-                <TooltipProvider delayDuration={50}>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Select
-                        defaultValue={'aws'}
-                        onValueChange={(value: any) =>
-                          handleProviderChange(value)
-                        }
-                      >
-                        <SelectTrigger className="w-full focus-visible:ring-1">
-                          <SelectValue placeholder="Select the service provider" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="aws">AWS</SelectItem>
-                          <SelectItem value="gcp">GCP</SelectItem>
-                        </SelectContent>
-                      </Select>
+                <Tooltip>
+                  <Select
+                    defaultValue={'aws'}
+                    onValueChange={(value: any) => handleProviderChange(value)}
+                  >
+                    <TooltipTrigger asChild>
+                      <SelectTrigger className="w-full focus-visible:ring-1">
+                        <SelectValue placeholder="Select the service provider" />
+                      </SelectTrigger>
                     </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
-                        Select a cloud provider
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <TooltipProvider delayDuration={50}>
-                  <Tooltip>
-                    <TooltipContent side="bottom">
-                      <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
-                        Select a version for cloud provider's resources
-                      </p>
-                    </TooltipContent>
-                    <Select
-                      defaultValue={
-                        selectedProvider
-                          ? leftSideBarData[selectedProvider].versions[0]
-                              .version
-                          : ''
-                      }
-                    >
-                      <TooltipTrigger>
-                        <SelectTrigger className="w-full focus-visible:ring-1">
-                          <SelectValue placeholder="Select the version" />
-                        </SelectTrigger>
-                      </TooltipTrigger>
+                    <SelectContent>
+                      <SelectItem value="aws">AWS</SelectItem>
+                      <SelectItem value="gcp">GCP</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <TooltipContent>
+                    <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                      Select a cloud provider
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
 
-                      <SelectContent>
-                        {selectedProvider &&
-                          leftSideBarData[selectedProvider].versions.map(
-                            (item: any) => (
-                              <SelectItem value={item.version}>
-                                {item.version}
-                              </SelectItem>
-                            ),
-                          )}
-                      </SelectContent>
-                    </Select>
-                  </Tooltip>
-                </TooltipProvider>
+                <Tooltip>
+                  <TooltipContent side="bottom">
+                    <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                      Select a version for cloud provider&apos;s resources
+                    </p>
+                  </TooltipContent>
+                  <Select
+                    defaultValue={
+                      selectedProvider
+                        ? leftSideBarData[selectedProvider].versions[0].version
+                        : ''
+                    }
+                  >
+                    <TooltipTrigger asChild>
+                      <SelectTrigger className="w-full focus-visible:ring-1">
+                        <SelectValue placeholder="Select the version" />
+                      </SelectTrigger>
+                    </TooltipTrigger>
+
+                    <SelectContent>
+                      {selectedProvider &&
+                        leftSideBarData[selectedProvider].versions.map(
+                          (item: any) => (
+                            <SelectItem value={item.version} key={item.version}>
+                              {item.version}
+                            </SelectItem>
+                          ),
+                        )}
+                    </SelectContent>
+                  </Select>
+                </Tooltip>
+
                 <ToggleGroup
                   type="single"
                   className="bg-gray-200 rounded-sm p-1"
                   defaultValue="a"
                 >
-                  <ToggleGroupItem value="a" className="h-fit w-fit p-3">
+                  <ToggleGroupItem value="a" className="h-fit w-fit p-1">
                     {' '}
-                    <IoCubeOutline className="text-sm" />
+                    <IoCubeOutline className="text-md" />
                   </ToggleGroupItem>
-                  <ToggleGroupItem value="b" className="h-fit w-fit p-3">
+                  <ToggleGroupItem value="b" className="h-fit w-fit p-1">
                     {' '}
-                    <IoCubeSharp className="text-sm" />
+                    <IoCubeSharp className="text-md" />
                   </ToggleGroupItem>
                 </ToggleGroup>
               </div>
@@ -199,38 +194,36 @@ export default function SideBar() {
                                   subList,
                                 }: SubTabInterface) => {
                                   return (
-                                    <TooltipProvider key={title}>
-                                      <Tooltip>
-                                        <TooltipTrigger>
-                                          <div
-                                            className="w-full flex flex-col justify-center gap-1  items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50"
-                                            onClick={() =>
-                                              openSubMenu({
-                                                parentIcon: Icon,
-                                                parentTitle: parentTitle,
-                                                subTitle: title,
-                                                subList: subList,
-                                              })
-                                            }
-                                          >
-                                            {Icon ? (
-                                              <Icon className="rounded-md" />
-                                            ) : (
-                                              <IoCalculatorOutline className="text-5xl mx-auto p-1 rounded-md" />
-                                            )}
-                                            <p className="truncate text-xs w-4/5  text-center">
-                                              {title}
-                                            </p>
-                                          </div>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                          {' '}
-                                          <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                                    <Tooltip key={title}>
+                                      <TooltipTrigger>
+                                        <div
+                                          className="w-full flex flex-col justify-center gap-1  items-center h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50"
+                                          onClick={() =>
+                                            openSubMenu({
+                                              parentIcon: Icon,
+                                              parentTitle: parentTitle,
+                                              subTitle: title,
+                                              subList: subList,
+                                            })
+                                          }
+                                        >
+                                          {Icon ? (
+                                            <Icon className="rounded-md" />
+                                          ) : (
+                                            <IoCalculatorOutline className="text-5xl mx-auto p-1 rounded-md" />
+                                          )}
+                                          <p className="truncate text-xs w-4/5  text-center">
                                             {title}
                                           </p>
-                                        </TooltipContent>
-                                      </Tooltip>
-                                    </TooltipProvider>
+                                        </div>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        {' '}
+                                        <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                                          {title}
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
                                   )
                                 },
                               )}

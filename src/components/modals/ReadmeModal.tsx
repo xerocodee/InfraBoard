@@ -28,7 +28,7 @@ const ReadmeModal = () => {
 
       <DialogTrigger>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm flex item-center">
               <FiFileText />
             </div>

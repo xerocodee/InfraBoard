@@ -1,6 +1,10 @@
+// import MonacoEditor from 'react-monaco-editor'
+import dynamic from 'next/dynamic'
+const MonacoEditor = dynamic(() => import('react-monaco-editor'), {
+  ssr: false,
+})
 import { DroppedItem } from '@/types/types'
 import React from 'react'
-import MonacoEditor from 'react-monaco-editor'
 import { FaFileDownload } from 'react-icons/fa'
 import { FaDownload } from 'react-icons/fa'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -12,7 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select'
-import { Button } from '../ui/button'
 
 interface CodeEditorProps {
   droppedItems: DroppedItem[]
@@ -41,7 +44,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ droppedItems }) => {
         </Tabs>
         <div className="grid grid-cols-2 gap-2 px-2">
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <Select defaultValue={'aws'}>
                 <SelectTrigger className="w-full focus-visible:ring-1">
                   <SelectValue placeholder="Select the service provider" />
@@ -59,10 +62,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ droppedItems }) => {
           </Tooltip>
           <div className="space-x-2">
             <Tooltip>
-              <TooltipTrigger>
-                <Button className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
+              <TooltipTrigger className="p-3">
+                <div className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
                   <FaFileDownload />
-                </Button>
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
@@ -71,10 +74,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ droppedItems }) => {
               </TooltipContent>
             </Tooltip>
             <Tooltip>
-              <TooltipTrigger>
-                <Button className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
+              <TooltipTrigger className="p-3">
+                <div className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
                   <FaDownload />
-                </Button>
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
