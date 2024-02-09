@@ -1,19 +1,16 @@
-import { useDisclosure } from '@mantine/hooks'
-import { Modal, Group, Tooltip, Textarea, Button } from '@mantine/core'
 import { FiFileText } from 'react-icons/fi'
-
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import {
+  TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+} from '@/components/ui/tooltip'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
 const ReadmeModal = () => {
-  const [opened, { open, close }] = useDisclosure(false)
-
   return (
-    <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        size="70%"
-        className="bg-[#212121]"
-        title="README.md"
-      >
+    <Dialog>
+      <DialogContent className="w-4/5">
         <div className="flex justify-around flex-col gap-4">
           <div className="flex ">
             <p>
@@ -23,37 +20,27 @@ const ReadmeModal = () => {
           </div>
           <Textarea />
           <div className="flex gap-4">
-            <Button color="#714eff">SAVE</Button>
-            <Button color="black" variant="outline">
-              CLOSE
-            </Button>
+            <Button>SAVE</Button>
+            <Button>CLOSE</Button>
           </div>
         </div>
-      </Modal>
+      </DialogContent>
 
-      <Group>
-        <Tooltip
-          label="Shortcuts"
-          withArrow
-          position="bottom"
-          arrowSize={8}
-          className="text-[#003ab7]"
-          color="white"
-          style={{
-            boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-            fontSize: '1rem',
-            fontWeight: 'bolder',
-          }}
-        >
-          <div
-            className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
-            onClick={open}
-          >
-            <FiFileText />
-          </div>
+      <DialogTrigger>
+        <Tooltip>
+          <TooltipTrigger>
+            <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm flex item-center">
+              <FiFileText />
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+              Readme
+            </p>
+          </TooltipContent>
         </Tooltip>
-      </Group>
-    </>
+      </DialogTrigger>
+    </Dialog>
   )
 }
 

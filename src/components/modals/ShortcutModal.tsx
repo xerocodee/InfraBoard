@@ -1,21 +1,17 @@
-import { useDisclosure } from '@mantine/hooks'
-import { Modal, Group, Tooltip } from '@mantine/core'
 import { shortcutsData1, shortcutsData2 } from '@/store/leftSideBarData'
 import { LuKeyboard } from 'react-icons/lu'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import {
+  TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 
 const ShortcutsModal = () => {
-  const [opened, { open, close }] = useDisclosure(false)
-
   return (
-    <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        size="70%"
-        className="bg-[#212121]"
-        title="Shortcuts"
-      >
-        <div className="flex justify-around ">
+    <Dialog>
+      <DialogContent className="w-4/5">
+        <div className="flex justify-around w-full">
           <div>
             {shortcutsData1.map((item, index) => {
               return (
@@ -65,31 +61,23 @@ const ShortcutsModal = () => {
             })}
           </div>
         </div>
-      </Modal>
+      </DialogContent>
 
-      <Group>
-        <Tooltip
-          label="Shortcuts"
-          withArrow
-          position="bottom"
-          arrowSize={8}
-          color="white"
-          className="text-[#003ab7]"
-          style={{
-            boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-            fontSize: '1rem',
-            fontWeight: 'bolder',
-          }}
-        >
-          <div
-            className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
-            onClick={open}
-          >
-            <LuKeyboard />
-          </div>
+      <DialogTrigger>
+        <Tooltip>
+          <TooltipTrigger>
+            <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm flex item-center">
+              <LuKeyboard />
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+              Shortcuts
+            </p>
+          </TooltipContent>
         </Tooltip>
-      </Group>
-    </>
+      </DialogTrigger>
+    </Dialog>
   )
 }
 

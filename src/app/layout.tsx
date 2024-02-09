@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { MantineProvider } from '@mantine/core'
-import '@mantine/core/styles.css'
 import './globals.css'
+import { TooltipProvider } from '@/components/ui/tooltip'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MantineProvider>{children}</MantineProvider>
+        <TooltipProvider delayDuration={50}>{children}</TooltipProvider>
       </body>
     </html>
   )
