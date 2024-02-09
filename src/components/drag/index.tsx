@@ -9,11 +9,15 @@ import { MdGridOn } from 'react-icons/md'
 import { RiZoomInLine, RiZoomOutLine } from 'react-icons/ri'
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2'
 import { LuRedo, LuUndo } from 'react-icons/lu'
-import { Tooltip } from '@mantine/core'
 import Draggable from 'react-draggable'
 import { BsPlusSquareDotted } from 'react-icons/bs'
 import ShortcutsModal from '../modals/ShortcutModal'
 import ReadmeModal from '../modals/ReadmeModal'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 const Drag = ({
   setShowBackgroundImage,
@@ -76,192 +80,142 @@ const Drag = ({
               className="flex flex-col items-center justify-center bg-green"
               onClick={handleReturnToInitial}
             >
-              <Tooltip
-                label="Return to initial position"
-                withArrow
-                position="bottom"
-                arrowSize={8}
-                c="violet"
-                color="white"
-                style={{
-                  boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                  fontSize: '1rem',
-                  fontWeight: 'bolder',
-                }}
-              >
-                <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-                  <IoMdReturnLeft />
-                </div>
+              <Tooltip>
+                <TooltipContent side="bottom">
+                  <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                    Return to initial position
+                  </p>
+                </TooltipContent>
+                <TooltipTrigger asChild>
+                  <span className="m-1 p-2 block  text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                    <IoMdReturnLeft />
+                  </span>
+                </TooltipTrigger>
               </Tooltip>
             </div>
           )}
           {currentMode === 'move' ? (
-            <Tooltip
-              label="Switch to move mode"
-              withArrow
-              position="bottom"
-              arrowSize={8}
-              c="violet"
-              color="white"
-              style={{
-                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                fontSize: '1rem',
-                fontWeight: 'bolder',
-              }}
-            >
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-                <FaRegHand onClick={handleModeToggle} />
-              </div>
+            <Tooltip>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Switch to move mode
+                </p>
+              </TooltipContent>
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                  <FaRegHand onClick={handleModeToggle} />
+                </span>
+              </TooltipTrigger>
             </Tooltip>
           ) : (
-            <Tooltip
-              label="Switch to select mode"
-              withArrow
-              position="bottom"
-              arrowSize={8}
-              c="violet"
-              color="white"
-              style={{
-                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                fontSize: '1rem',
-                fontWeight: 'bolder',
-              }}
-            >
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-                <TfiLocationArrow onClick={handleModeToggle} />
-              </div>
+            <Tooltip>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Switch to select mode
+                </p>
+              </TooltipContent>
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                  <TfiLocationArrow onClick={handleModeToggle} />
+                </span>
+              </TooltipTrigger>
             </Tooltip>
           )}
           {currentGridMode === 'grid' ? (
-            <Tooltip
-              label="Change the grid into dots"
-              withArrow
-              position="bottom"
-              arrowSize={8}
-              c="violet"
-              color="white"
-              style={{
-                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                fontSize: '1rem',
-                fontWeight: 'bolder',
-              }}
-            >
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-                <MdGridOn onClick={handleModeToggleGrid} />
-              </div>
+            <Tooltip>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Change the grid into dots
+                </p>
+              </TooltipContent>
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                  <MdGridOn onClick={handleModeToggleGrid} />
+                </span>
+              </TooltipTrigger>
             </Tooltip>
           ) : (
-            <Tooltip
-              label="Change the grid into squares"
-              withArrow
-              position="bottom"
-              arrowSize={8}
-              c="violet"
-              color="white"
-              style={{
-                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                fontSize: '1rem',
-                fontWeight: 'bolder',
-              }}
-            >
-              <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-                <BsPlusSquareDotted onClick={handleModeToggleGrid} />
-              </div>
+            <Tooltip>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Change the grid into squares
+                </p>
+              </TooltipContent>
+              <TooltipTrigger asChild>
+                <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                  <BsPlusSquareDotted onClick={handleModeToggleGrid} />
+                </span>
+              </TooltipTrigger>
             </Tooltip>
           )}
-          <Tooltip
-            label="Zoom in (+)"
-            withArrow
-            position="bottom"
-            arrowSize={8}
-            c="violet"
-            color="white"
-            style={{
-              boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-              fontSize: '1rem',
-              fontWeight: 'bolder',
-            }}
-          >
-            <div
-              className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
-              onClick={handleZoomInIcon}
-            >
-              <RiZoomInLine />
-            </div>
+          <Tooltip>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Zoom in (+)
+              </p>
+            </TooltipContent>
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+                onClick={handleZoomInIcon}
+              >
+                <RiZoomInLine />
+              </span>
+            </TooltipTrigger>
           </Tooltip>
-          <Tooltip
-            label="Fit content in the view"
-            withArrow
-            position="bottom"
-            arrowSize={8}
-            c="violet"
-            color="white"
-            style={{
-              boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-              fontSize: '1rem',
-              fontWeight: 'bolder',
-            }}
-          >
-            <div
-              className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
-              onClick={handleFitContentIcon}
-            >
-              <HiOutlineViewfinderCircle />
-            </div>
+          <Tooltip>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Fit content in the view
+              </p>
+            </TooltipContent>
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+                onClick={handleFitContentIcon}
+              >
+                <HiOutlineViewfinderCircle />
+              </span>
+            </TooltipTrigger>
           </Tooltip>
-          <Tooltip
-            label="Zoom out (-)"
-            withArrow
-            position="bottom"
-            arrowSize={8}
-            c="violet"
-            color="white"
-            style={{
-              boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-              fontSize: '1rem',
-              fontWeight: 'bolder',
-            }}
-          >
-            <div
-              className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
-              onClick={handleZoomOutIcon}
-            >
-              <RiZoomOutLine />
-            </div>
+          <Tooltip>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Zoom out (-)
+              </p>
+            </TooltipContent>
+            <TooltipTrigger asChild>
+              <span
+                className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm"
+                onClick={handleZoomOutIcon}
+              >
+                <RiZoomOutLine />
+              </span>
+            </TooltipTrigger>
           </Tooltip>
-          <Tooltip
-            label="Undo (CTRL + Z)"
-            withArrow
-            position="bottom"
-            arrowSize={8}
-            c="violet"
-            color="white"
-            style={{
-              boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-              fontSize: '1rem',
-              fontWeight: 'bolder',
-            }}
-          >
-            <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-              <LuUndo />
-            </div>
+          <Tooltip>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Undo (CTRL + Z)
+              </p>
+            </TooltipContent>
+            <TooltipTrigger asChild>
+              <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                <LuUndo />
+              </span>
+            </TooltipTrigger>
           </Tooltip>
-          <Tooltip
-            label="Redo (CTRL + shift + Z)"
-            withArrow
-            position="bottom"
-            arrowSize={8}
-            c="violet"
-            color="white"
-            style={{
-              boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-              fontSize: '1rem',
-              fontWeight: 'bolder',
-            }}
-          >
-            <div className="m-1 p-2 text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
-              <LuRedo />
-            </div>
+          <Tooltip>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Redo (CTRL + shift + Z)
+              </p>
+            </TooltipContent>
+            <TooltipTrigger asChild>
+              <span className="m-1 p-2 block text-gray-800 cursor-pointer hover:bg-violet-200 hover:text-violet-600 rounded-sm">
+                <LuRedo />
+              </span>
+            </TooltipTrigger>
           </Tooltip>
           <ReadmeModal />
           <ShortcutsModal />

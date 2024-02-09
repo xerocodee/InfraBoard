@@ -1,4 +1,4 @@
-import { Tooltip } from '@mantine/core'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import React from 'react'
 import { IoCalculatorOutline } from 'react-icons/io5'
 
@@ -23,27 +23,24 @@ const SearchResults = ({
             <ul className="space-y-2 ml-5">
               {item?.subTabs?.map((item: any, index: number) => (
                 <li key={index}>
-                  <Tooltip
-                    withArrow
-                    label={item.title}
-                    transitionProps={{
-                      transition: 'fade',
-                      duration: 200,
-                    }}
-                    className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
-                    position="right"
-                    arrowSize={6}
-                    color="#fff"
-                  >
-                    <div className="flex items-center gap-2 ">
-                      <div>
-                        <IoCalculatorOutline className="text-2xl" />
+                  <Tooltip>
+                    <TooltipContent>
+                      <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                        {' '}
+                        {item.title}
+                      </p>
+                    </TooltipContent>
+                    <TooltipTrigger>
+                      <div className="flex items-center gap-2 ">
+                        <div>
+                          <IoCalculatorOutline className="text-2xl" />
+                        </div>
+                        <div className="overflow-hidden">
+                          <p className="font-medium truncate  ">{item.title}</p>
+                          <p className="truncate text-xs ">{item.desc}</p>
+                        </div>
                       </div>
-                      <div className="overflow-hidden">
-                        <p className="font-medium truncate  ">{item.title}</p>
-                        <p className="truncate text-xs ">{item.desc}</p>
-                      </div>
-                    </div>
+                    </TooltipTrigger>
                   </Tooltip>
                 </li>
               ))}

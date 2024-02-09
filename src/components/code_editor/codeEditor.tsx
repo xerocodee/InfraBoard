@@ -1,16 +1,27 @@
-// CodeEditor.tsx
+// import MonacoEditor from 'react-monaco-editor'
+import dynamic from 'next/dynamic'
+const MonacoEditor = dynamic(() => import('react-monaco-editor'), {
+  ssr: false,
+})
 import { DroppedItem } from '@/types/types'
 import React from 'react'
-import MonacoEditor from 'react-monaco-editor'
-import { Button, Select, Tabs, Tooltip } from '@mantine/core'
 import { FaFileDownload } from 'react-icons/fa'
 import { FaDownload } from 'react-icons/fa'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { TooltipContent, TooltipTrigger, Tooltip } from '../ui/tooltip'
+import {
+  SelectContent,
+  Select,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select'
+
 interface CodeEditorProps {
   droppedItems: DroppedItem[]
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = ({ droppedItems }) => {
-  // Extract relevant data from droppedItems and format it as needed
   const code = droppedItems
     .map(
       (item) =>
@@ -23,56 +34,58 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ droppedItems }) => {
 
   return (
     <div className="absolute top-[4rem] right-0 w-[25%] border-zinc-200 border-[1px] bg-white">
-      <div className="my-2 space-y-1">
-        <Tabs defaultValue="gallery">
-          <Tabs.List>
-            <Tabs.Tab value="gallery" className="uppercase w-full">
+      <div className="mb-2 space-y-1">
+        <Tabs defaultValue="gallery" className="w-full">
+          <TabsList className="w-full">
+            <TabsTrigger value="gallery" className="uppercase w-full">
               TerraForm Code
-            </Tabs.Tab>
-          </Tabs.List>
+            </TabsTrigger>
+          </TabsList>
         </Tabs>
-        <div className="grid grid-cols-2">
-          <Select
-            className="mx-2 w-fit"
-            defaultValue={'main.tf'}
-            checkIconPosition="right"
-            placeholder="Pick value"
-            data={['main.tf']}
-          />
-          <Button.Group>
-            <Tooltip
-              withArrow
-              label={'Download Selected File'}
-              transitionProps={{
-                transition: 'fade',
-                duration: 200,
-              }}
-              className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
-              position="bottom"
-              arrowSize={6}
-              color="#fff"
-            >
-              <Button className="text-zinc-500 w-fit border-zinc-200">
-                <FaFileDownload />
-              </Button>
+        <div className="grid grid-cols-2 gap-2 px-2">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Select defaultValue={'aws'}>
+                <SelectTrigger className="w-full focus-visible:ring-1">
+                  <SelectValue placeholder="Select the service provider" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="aws">main.tf</SelectItem>
+                </SelectContent>
+              </Select>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                Select a tf file
+              </p>
+            </TooltipContent>
+          </Tooltip>
+          <div className="space-x-2">
+            <Tooltip>
+              <TooltipTrigger className="p-3">
+                <div className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
+                  <FaFileDownload />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Download Selected File
+                </p>
+              </TooltipContent>
             </Tooltip>
-            <Tooltip
-              withArrow
-              label={'Download All Files'}
-              transitionProps={{
-                transition: 'fade',
-                duration: 200,
-              }}
-              className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]"
-              position="bottom"
-              arrowSize={6}
-              color="#fff"
-            >
-              <Button className="text-zinc-500 w-fit border-zinc-200">
-                <FaDownload />
-              </Button>
+            <Tooltip>
+              <TooltipTrigger className="p-3">
+                <div className="text-zinc-600 w-fit border-zinc-200 bg-zinc-100 hover:bg-white hover:text-black">
+                  <FaDownload />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
+                  Download All Files
+                </p>
+              </TooltipContent>
             </Tooltip>
-          </Button.Group>
+          </div>
         </div>
       </div>
       <MonacoEditor

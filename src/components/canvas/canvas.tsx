@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import Drag from '../drag'
 import { useDrop } from 'react-dnd'
 import { DroppedItem } from '@/types/types'
-import { Resizable, ResizableBox } from 'react-resizable'
-import { url } from 'inspector'
+import { ResizableBox } from 'react-resizable'
+import '@/styles/resizable.css'
+import Draggable from 'react-draggable'
+import { IoCalculatorOutline } from 'react-icons/io5'
 interface CanvasProps {
   onItemDrop: (newItem: DroppedItem) => void
   droppedItems: DroppedItem[]
@@ -57,7 +59,7 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
 
   const [, drop] = useDrop({
     accept: 'SUBTAB',
-    drop: (item, monitor) => {
+    drop: (item: any, monitor: any) => {
       if (!monitor) {
         return
       }
@@ -82,12 +84,6 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
 
   return (
     <div>
-      <Drag
-        setShowBackgroundImage={setShowBackgroundImage}
-        handleZoomIn={handleZoomIn}
-        handleZoomOut={handleZoomOut}
-        handleFitContent={handleFitContent}
-      />
       <div
         ref={drop}
         className="h-[calc(100vh-4rem)] w-[100vw] -z-1"
@@ -96,29 +92,56 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
           backgroundSize: '20px 20px',
         }}
       >
-        {droppedItems.map((droppedItem, index) => (
-          <ResizableBox
-            key={index}
-            width={200} // Set your initial width here
-            height={150} // Set your initial height here
-            onResize={(e, data) => {
-              // Handle resizing logic if needed
-            }}
-            style={{
-              position: 'absolute',
-              top: droppedItem.position.y,
-              left: droppedItem.position.x,
-              border: '1px solid #ccc',
-              padding: '10px',
-              borderRadius: '5px',
-              backgroundColor: '#fff',
-              boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <h3>{droppedItem.subTab.title}</h3>
-            {/* Render the subList items */}
-          </ResizableBox>
-        ))}
+        <Drag
+          setShowBackgroundImage={setShowBackgroundImage}
+          handleZoomIn={handleZoomIn}
+          handleZoomOut={handleZoomOut}
+          handleFitContent={handleFitContent}
+        />
+        {droppedItems.map((droppedItem, index) => {
+          console.log(droppedItem.subTab.icon)
+          const Icon = droppedItem.subTab.icon
+          return (
+            <Draggable
+              key={index}
+              defaultPosition={{
+                x: droppedItem.position.x,
+                y: droppedItem.position.y,
+              }}
+              onStop={(e, data) => {
+                // Handle dragging logic if needed
+              }}
+            >
+              <ResizableBox
+                width={70}
+                height={70}
+                minConstraints={[50, 50]}
+                maxConstraints={[150, 150]}
+                onResize={(e, data) => {
+                  // Handle resizing logic if needed
+                }}
+                lockAspectRatio={true}
+                style={{
+                  position: 'absolute',
+                  border: '1px solid #ccc',
+                  padding: '10px',
+                  borderRadius: '5px',
+                  backgroundColor: '#fff',
+                  boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                }}
+              >
+                <div className="flex w-full justify-center items-center">
+                  {Icon ? (
+                    <Icon className="w-full h-full" />
+                  ) : (
+                    <IoCalculatorOutline className="w-full h-full" />
+                  )}
+                </div>
+                {/* Render the subList items */}
+              </ResizableBox>
+            </Draggable>
+          )
+        })}
       </div>
     </div>
   )
