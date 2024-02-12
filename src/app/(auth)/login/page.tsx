@@ -20,7 +20,7 @@ import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { useRouter } from 'next/navigation'
 
-const page = () => {
+const Login = () => {
   const router = useRouter()
   const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
@@ -143,7 +143,7 @@ const page = () => {
               </div>
               <p className="mt-2 text-xs text-center text-gray-700 mb-2">
                 {' '}
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/signup">
                   {' '}
                   <span className=" text-blue-600 hover:underline">
@@ -176,4 +176,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Login

@@ -20,13 +20,9 @@ import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { FormEvent, useState } from 'react'
 
-const page = () => {
+const SignUp = () => {
   const router = useRouter()
   const { authStatus } = useAuth()
-  if (authStatus) {
-    router.replace('/')
-    return <></>
-  }
   const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
 
@@ -36,18 +32,15 @@ const page = () => {
     name: '',
   })
   const [error, setError] = useState('')
-
   const { setAuthStatus } = useAuth()
 
   const urlParams = new URLSearchParams(window.location.search)
   const userId = urlParams.get('userId')
   const secret = urlParams.get('secret')
-
   const verifyParams = {
-    userId: userId,
-    secret: secret,
+    userId: userId || '',
+    secret: secret || '',
   }
-
   const create = async (e: FormEvent) => {
     e.preventDefault()
     console.log('s')
@@ -85,6 +78,10 @@ const page = () => {
     account.createOAuth2Session('github', suceesPath, failurePath)
   }
 
+  if (authStatus) {
+    router.replace('/')
+    return <></>
+  }
   return (
     <>
       <div className="container relative  h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols- lg:px-0">
@@ -222,4 +219,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SignUp
