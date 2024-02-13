@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -39,11 +40,13 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18",
     "react-draggable": "^4.4.6",
+    "react-hook-form": "^7.50.1",
     "react-icons": "^5.0.1",
     "react-monaco-editor": "^0.55.0",
     "react-resizable": "^3.0.5",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

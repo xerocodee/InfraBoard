@@ -25,7 +25,7 @@ export default function RootLayout({
     <AuthProvider value={{ authStatus, setAuthStatus }}>
       {!loader && (
         <>
-          <main className="px-2 py-4  bg-white">{children}</main>
+          <main className="">{children}</main>
         </>
       )}
     </AuthProvider>

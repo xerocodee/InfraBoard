@@ -1,9 +1,21 @@
 'use client'
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import {
   Card,
   CardContent,
@@ -14,12 +26,20 @@ import {
 } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { FormEvent, useState } from 'react'
 import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { useRouter } from 'next/navigation'
 import ProtectedLayout from '@/utils/protectedRoutes'
+
+
+const formSchema = z.object({
+  email: z.string().min(2, {
+    message: "Invalid Email",
+  }).email(),
+  password: z.string().min(8, { message: "Password must be atleast 8 characters" })
+})
+
 const Login = () => {
   const router = useRouter()
   const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
@@ -31,10 +51,9 @@ const Login = () => {
   })
   const { setAuthStatus } = useAuth()
 
-  const login = async (e: FormEvent) => {
-    e.preventDefault()
+  const login = async ({ email, password }: any) => {
     try {
-      const session = await appwriteService.login(formData)
+      const session = await appwriteService.login({ email, password })
       console.log(formData)
       if (session) {
         setAuthStatus(true)
@@ -52,6 +71,17 @@ const Login = () => {
   const githubAuth = async (e: any) => {
     e.preventDefault()
     account.createOAuth2Session('github', suceesPath, failurePath)
+  }
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: ""
+    },
+  })
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    login({ email: values.email, password: values.password })
   }
   return (
     <>
@@ -74,53 +104,54 @@ const Login = () => {
                   Enter your email and password to login
                 </CardDescription>
               </CardHeader>
-              <form onSubmit={login}>
-                <CardContent className="grid gap-4">
-                  <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder=""
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={formData.password}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          password: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex flex-col">
-                  <Button className="w-full" onClick={login}>
-                    Login
-                  </Button>
-                </CardFooter>
-              </form>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <CardContent className="grid gap-4">
+                    <div className="grid gap-2">
+                      <FormField control={form.control} name="email" render={({ field }) => (
+                        <FormItem> <FormLabel htmlFor="email">Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    <div className="grid gap-2">
+                      <FormField control={form.control} name="password" render={({ field }) => (
+                        <FormItem> <FormLabel htmlFor="password">Password</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="password"
+                              placeholder=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    {error && <p className="text-red-600 mt-2 text-center">{error}</p>}
+                    <div className="flex items-center space-x-2">
+                      <Checkbox id="terms" />
+                      <label
+                        htmlFor="terms"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        Remember me
+                      </label>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex flex-col">
+                    <Button className="w-full" type="submit">
+                      Login
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Form>
               <div className="relative mb-2">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />

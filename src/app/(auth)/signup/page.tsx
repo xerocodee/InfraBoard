@@ -1,4 +1,16 @@
 'use client'
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -20,6 +32,20 @@ import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { FormEvent, useState } from 'react'
 import ProtectedLayout from '@/utils/protectedRoutes'
+
+
+const formSchema = z.object({
+
+  name: z.string().min(2, {
+    message: "Name must be at least 2 character",
+  }),
+  email: z.string().min(2, {
+    message: "Invalid Email",
+  }).email(),
+  password: z.string().min(8, { message: "Password must be at least 8 characters" })
+})
+
+
 const SignUp = () => {
   const router = useRouter()
   const { authStatus } = useAuth()
@@ -43,11 +69,10 @@ const SignUp = () => {
     userId: userId || '',
     secret: secret || '',
   }
-  const create = async (e: FormEvent) => {
-    e.preventDefault()
+  const create = async ({ name, email, password }: any) => {
     try {
-      const userData = await appwriteService.createUserAccount(formData)
-      await appwriteService.createDatabaseAccount(formData)
+      const userData = await appwriteService.createUserAccount({ name, email, password })
+      await appwriteService.createDatabaseAccount({ name, email, password })
       await appwriteService.createVerification()
       if (userData) {
         setAuthStatus(true)
@@ -80,6 +105,18 @@ const SignUp = () => {
     router.push('/')
   }
 
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: ""
+    },
+  })
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    create({ name: values.name, email: values.email, password: values.password })
+  }
   if (authStatus) {
     router.replace('/')
     return <></>
@@ -105,68 +142,67 @@ const SignUp = () => {
                   Enter your email and password to register
                 </CardDescription>
               </CardHeader>
-              <form>
-                <CardContent className="grid gap-4">
-                  <div className="grid gap-2">
-                    <Label htmlFor="name">Name</Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          name: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder=""
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={formData.password}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          password: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex flex-col">
-                  <Button className="w-full" onClick={create}>
-                    Register
-                  </Button>
-                </CardFooter>
-              </form>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <CardContent className="grid gap-4">
+                    <div className="grid gap-2">
+                      <FormField control={form.control} name="name" render={({ field }) => (
+                        <FormItem> <FormLabel htmlFor="name">Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    <div className="grid gap-2">
+                      <FormField control={form.control} name="email" render={({ field }) => (
+                        <FormItem> <FormLabel htmlFor="email">Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    <div className="grid gap-2">
+                      <FormField control={form.control} name="password" render={({ field }) => (
+                        <FormItem> <FormLabel htmlFor="password">Password</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="password"
+                              placeholder=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+                    {error && <p className="text-red-600 mt-2 text-center">{error}</p>}
+                    <div className="flex items-center space-x-2">
+                      <Checkbox id="terms" />
+                      <label
+                        htmlFor="terms"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        Remember me
+                      </label>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex flex-col">
+                    <Button className="w-full" type="submit">
+                      Register
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Form>
               <div className="relative mb-2">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />
