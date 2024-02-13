@@ -1,8 +1,8 @@
 'use client'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
@@ -15,7 +15,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from '@/components/ui/form'
 import {
   Card,
   CardContent,
@@ -32,12 +32,16 @@ import appwriteService, { account } from '@/appwrite/config'
 import { useRouter } from 'next/navigation'
 import ProtectedLayout from '@/utils/protectedRoutes'
 
-
 const formSchema = z.object({
-  email: z.string().min(2, {
-    message: "Invalid Email",
-  }).email(),
-  password: z.string().min(8, { message: "Password must be atleast 8 characters" })
+  email: z
+    .string()
+    .min(2, {
+      message: 'Invalid Email',
+    })
+    .email(),
+  password: z
+    .string()
+    .min(8, { message: 'Password must be atleast 8 characters' }),
 })
 
 const Login = () => {
@@ -76,8 +80,8 @@ const Login = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: ""
+      email: '',
+      password: '',
     },
   })
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -108,33 +112,44 @@ const Login = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                   <CardContent className="grid gap-4">
                     <div className="grid gap-2">
-                      <FormField control={form.control} name="email" render={({ field }) => (
-                        <FormItem> <FormLabel htmlFor="email">Email</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder=""
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            {' '}
+                            <FormLabel htmlFor="email">Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
                     <div className="grid gap-2">
-                      <FormField control={form.control} name="password" render={({ field }) => (
-                        <FormItem> <FormLabel htmlFor="password">Password</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="password"
-                              placeholder=""
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem>
+                            {' '}
+                            <FormLabel htmlFor="password">Password</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="password"
+                                placeholder=""
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
-                    {error && <p className="text-red-600 mt-2 text-center">{error}</p>}
+                    {error && (
+                      <p className="text-red-600 mt-2 text-center">{error}</p>
+                    )}
                     <div className="flex items-center space-x-2">
                       <Checkbox id="terms" />
                       <label

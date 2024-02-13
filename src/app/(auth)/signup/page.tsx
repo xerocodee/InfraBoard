@@ -1,8 +1,8 @@
 'use client'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import {
   Form,
   FormControl,
@@ -10,7 +10,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from '@/components/ui/form'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -33,18 +33,20 @@ import appwriteService, { account } from '@/appwrite/config'
 import { FormEvent, useState } from 'react'
 import ProtectedLayout from '@/utils/protectedRoutes'
 
-
 const formSchema = z.object({
-
   name: z.string().min(2, {
-    message: "Name must be at least 2 character",
+    message: 'Name must be at least 2 character',
   }),
-  email: z.string().min(2, {
-    message: "Invalid Email",
-  }).email(),
-  password: z.string().min(8, { message: "Password must be at least 8 characters" })
+  email: z
+    .string()
+    .min(2, {
+      message: 'Invalid Email',
+    })
+    .email(),
+  password: z
+    .string()
+    .min(8, { message: 'Password must be at least 8 characters' }),
 })
-
 
 const SignUp = () => {
   const router = useRouter()
@@ -71,7 +73,11 @@ const SignUp = () => {
   }
   const create = async ({ name, email, password }: any) => {
     try {
-      const userData = await appwriteService.createUserAccount({ name, email, password })
+      const userData = await appwriteService.createUserAccount({
+        name,
+        email,
+        password,
+      })
       await appwriteService.createDatabaseAccount({ name, email, password })
       await appwriteService.createVerification()
       if (userData) {
@@ -105,17 +111,20 @@ const SignUp = () => {
     router.push('/')
   }
 
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      password: ""
+      name: '',
+      email: '',
+      password: '',
     },
   })
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    create({ name: values.name, email: values.email, password: values.password })
+    create({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    })
   }
   if (authStatus) {
     router.replace('/')
@@ -146,46 +155,60 @@ const SignUp = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                   <CardContent className="grid gap-4">
                     <div className="grid gap-2">
-                      <FormField control={form.control} name="name" render={({ field }) => (
-                        <FormItem> <FormLabel htmlFor="name">Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder=""
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            {' '}
+                            <FormLabel htmlFor="name">Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
                     <div className="grid gap-2">
-                      <FormField control={form.control} name="email" render={({ field }) => (
-                        <FormItem> <FormLabel htmlFor="email">Email</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder=""
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            {' '}
+                            <FormLabel htmlFor="email">Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
                     <div className="grid gap-2">
-                      <FormField control={form.control} name="password" render={({ field }) => (
-                        <FormItem> <FormLabel htmlFor="password">Password</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="password"
-                              placeholder=""
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem>
+                            {' '}
+                            <FormLabel htmlFor="password">Password</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="password"
+                                placeholder=""
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
-                    {error && <p className="text-red-600 mt-2 text-center">{error}</p>}
+                    {error && (
+                      <p className="text-red-600 mt-2 text-center">{error}</p>
+                    )}
                     <div className="flex items-center space-x-2">
                       <Checkbox id="terms" />
                       <label

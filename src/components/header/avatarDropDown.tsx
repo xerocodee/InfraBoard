@@ -28,8 +28,8 @@ const DropdownMenuDemo = () => {
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-2">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage src="" alt="" />
+            <AvatarFallback>{user && user?.name[0]}</AvatarFallback>
           </Avatar>
           <span>{user && user?.name}</span>
         </div>

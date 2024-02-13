@@ -42,11 +42,7 @@ const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
         </TooltipContent>
         <TooltipTrigger>
           <div className="w-full flex flex-col justify-center gap-1 items-center  h-20 border-2 rounded-md p-1 hover:border-[1px] hover:border-blue-600 hover:bg-blue-50">
-            {Icon ? (
-              <Icon className="" />
-            ) : (
-              <IoCalculatorOutline className="text-5xl mx-auto p-1" />
-            )}
+            <IoCalculatorOutline className="text-5xl mx-auto p-1" />
             <p className="truncate text-xs w-4/5 text-center">{title}</p>
           </div>
         </TooltipTrigger>
