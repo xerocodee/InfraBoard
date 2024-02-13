@@ -19,7 +19,7 @@ import { FormEvent, useState } from 'react'
 import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { useRouter } from 'next/navigation'
-
+import ProtectedLayout from '@/utils/protectedRoutes'
 const Login = () => {
   const router = useRouter()
   const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
@@ -30,10 +30,12 @@ const Login = () => {
     password: '',
   })
   const { setAuthStatus } = useAuth()
+
   const login = async (e: FormEvent) => {
     e.preventDefault()
     try {
       const session = await appwriteService.login(formData)
+      console.log(formData)
       if (session) {
         setAuthStatus(true)
         router.push('/')
@@ -44,13 +46,11 @@ const Login = () => {
   }
   const googleAuth = async (e: any) => {
     e.preventDefault()
-
     account.createOAuth2Session('google', suceesPath, failurePath)
   }
 
   const githubAuth = async (e: any) => {
     e.preventDefault()
-
     account.createOAuth2Session('github', suceesPath, failurePath)
   }
   return (
@@ -74,7 +74,7 @@ const Login = () => {
                   Enter your email and password to login
                 </CardDescription>
               </CardHeader>
-              <form>
+              <form onSubmit={login}>
                 <CardContent className="grid gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
@@ -116,7 +116,7 @@ const Login = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col">
-                  <Button className="w-full" onSubmit={login}>
+                  <Button className="w-full" onClick={login}>
                     Login
                   </Button>
                 </CardFooter>
@@ -176,4 +176,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ProtectedLayout(Login)

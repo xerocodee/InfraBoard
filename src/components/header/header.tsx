@@ -9,19 +9,10 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import appwriteService from '@/appwrite/config'
 import { DropdownMenuDemo } from './avatarDropDown'
 
 const Header = () => {
   const [selectedTool, setSelectedTool] = useState<string | null>('pen')
-  const [user, setUser] = useState<any>(null)
-  useEffect(() => {
-    ;(async () => {
-      const userData = await appwriteService.getCurrentUser()
-      setUser(userData)
-      console.log(userData)
-    })()
-  }, [])
   const handleToolClick = (tool: string) => {
     setSelectedTool(tool === selectedTool ? null : tool)
   }
@@ -72,8 +63,7 @@ const Header = () => {
             </TooltipTrigger>
           </Tooltip>
         </div>
-
-        <DropdownMenuDemo user={user} />
+        <DropdownMenuDemo />
       </div>
     </>
   )

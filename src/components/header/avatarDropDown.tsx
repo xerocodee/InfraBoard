@@ -10,10 +10,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import appwriteService from '@/appwrite/config'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-export function DropdownMenuDemo({ user }: any) {
-  console.log(user)
-
+const DropdownMenuDemo = () => {
+  const router = useRouter()
+  const [user, setUser] = useState<any>(null)
+  useEffect(() => {
+    const userData = async () => {
+      const data = await appwriteService.getCurrentUser()
+      setUser(data)
+    }
+    userData()
+  }, [])
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,7 +48,12 @@ export function DropdownMenuDemo({ user }: any) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={async () => await appwriteService.logout()}>
+        <DropdownMenuItem
+          onClick={async () => {
+            await appwriteService.logout()
+            router.push('/login')
+          }}
+        >
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
@@ -47,3 +61,5 @@ export function DropdownMenuDemo({ user }: any) {
     </DropdownMenu>
   )
 }
+
+export { DropdownMenuDemo }

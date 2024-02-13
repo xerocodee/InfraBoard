@@ -19,10 +19,12 @@ import { useRouter } from 'next/navigation'
 import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { FormEvent, useState } from 'react'
-
+import ProtectedLayout from '@/utils/protectedRoutes'
 const SignUp = () => {
   const router = useRouter()
   const { authStatus } = useAuth()
+  console.log(authStatus)
+
   const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
 
@@ -43,13 +45,10 @@ const SignUp = () => {
   }
   const create = async (e: FormEvent) => {
     e.preventDefault()
-    console.log('s')
     try {
       const userData = await appwriteService.createUserAccount(formData)
       await appwriteService.createDatabaseAccount(formData)
-
       await appwriteService.createVerification()
-
       if (userData) {
         setAuthStatus(true)
       }
@@ -57,12 +56,13 @@ const SignUp = () => {
         .verifyUser(verifyParams)
         .then(() => {
           console.log('user is verified')
-          router.replace('/')
+          router.push('/')
         })
         .catch((err) => {
           console.log(err)
           setError(err.message)
         })
+      router.push('/')
     } catch (error: any) {
       console.log(error)
       setError(error.message)
@@ -72,10 +72,12 @@ const SignUp = () => {
   const googleAuth = async (e: any) => {
     e.preventDefault()
     account.createOAuth2Session('google', suceesPath, failurePath)
+    router.push('/')
   }
   const githubAuth = async (e: any) => {
     e.preventDefault()
     account.createOAuth2Session('github', suceesPath, failurePath)
+    router.push('/')
   }
 
   if (authStatus) {
@@ -219,4 +221,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default ProtectedLayout(SignUp)
