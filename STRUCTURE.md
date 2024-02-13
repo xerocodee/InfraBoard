@@ -8,13 +8,21 @@ This document provides an overview of the InfraBoard project's file structure to
 - `src/`: The source code directory for the application.
   - `app/`: Core app files including global styles and layout definitions.
   - `assets/`: Asset files categorized by their types (AWS, GCP, logos, etc.).
+  - `appwrite` : Contains various appwrite authentication functions.
   - `components/`: Reusable React components.
     - `canvas/`: Components related to the canvas functionality.
     - `drag/`: Drag-and-drop related components.
     - `header/`: Header component of the application.
     - `modals/`: Contains various modal components like `ReadmeModal.tsx`.
     - `sidebar/`: Sidebar and related components.
+  - `conf` : config file for appwrite project credentials.
+  - `context` : contains various global context states functions.
+  - `lib` : contains various library files for the project.
   - `store/`: State management using Redux or similar state stores, separated by service types.
+  - `styles`: css file for the project
+  - `types` : typescript interface files
+  - `utils` : functions which will be used multiple times across the project.
+    - `protectedRoutes.tsx` : This file is important! This file ensures that only authenticated user will have access to InfraBoard Dashboard.
 - `.eslintrc.json`: ESLint configuration for coding standards.
 - `.gitignore`: Specifies files to be ignored by git.
 - `.prettierrc`: Prettier configuration for code formatting.
