@@ -6,7 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import CodeEditor from '@/components/code_editor/codeEditor'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import ProtectedLayout from '@/utils/protectedRoutes'
 
 interface DroppedItem {
   subTab: {
@@ -17,7 +17,7 @@ interface DroppedItem {
   position: { x: number; y: number }
 }
 
-export default function Home() {
+function Home() {
   const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([])
   const handleItemDrop = (newItem: DroppedItem) => {
     setDroppedItems((prevItems) => [...prevItems, newItem])
@@ -33,3 +33,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default ProtectedLayout(Home)

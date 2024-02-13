@@ -131,11 +131,7 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
                 }}
               >
                 <div className="flex w-full justify-center items-center">
-                  {Icon ? (
-                    <Icon className="w-full h-full" />
-                  ) : (
-                    <IoCalculatorOutline className="w-full h-full" />
-                  )}
+                  <IoCalculatorOutline className="w-full h-full" />
                 </div>
                 {/* Render the subList items */}
               </ResizableBox>
