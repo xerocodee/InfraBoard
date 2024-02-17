@@ -105,7 +105,7 @@ const Login = () => {
       }
     }
     checkAuth()
-  }, [])
+  }, [router])
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
