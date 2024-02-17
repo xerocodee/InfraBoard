@@ -36,7 +36,7 @@ import dynamic from 'next/dynamic'
 const CodeEditor = dynamic(
   () => import('@/components/code_editor/codeEditor'),
   { ssr: false },
-);
+)
 
 const Icons = {
   spinner: Loader2,
@@ -134,7 +134,7 @@ const SignUp = () => {
       password: values.password,
     })
   }
-  
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
