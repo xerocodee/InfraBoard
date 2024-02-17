@@ -31,6 +31,12 @@ import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+const CodeEditor = dynamic(
+  () => import('@/components/code_editor/codeEditor'),
+  { ssr: false },
+);
 
 const Icons = {
   spinner: Loader2,
@@ -120,6 +126,7 @@ const SignUp = () => {
       password: '',
     },
   })
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     create({
       name: values.name,
@@ -127,6 +134,7 @@ const SignUp = () => {
       password: values.password,
     })
   }
+  
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -139,7 +147,7 @@ const SignUp = () => {
       }
     }
     checkAuth()
-  }, [])
+  }, [router])
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
