@@ -33,7 +33,9 @@ InfraBoard combines synchronous and asynchronous services for a streamlined expe
 ### Getting Started
 Here you will find all the available npm commands [HERE](https://github.com/xerocodee/InfraBoard/wiki/Getting-Started)
 
-#### Demo Loping 
+##### Demo Loging
+
+Email : `test@xerocodee.com` | Passowrd : `test@123`
 
 ## 🤝 Contributing
 
