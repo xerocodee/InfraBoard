@@ -78,33 +78,38 @@ const SignUp = () => {
     userId: userId || '',
     secret: secret || '',
   }
-  const create = async ({ name, email, password }: any) => {
-    try {
-      const userData = await appwriteService.createUserAccount({
-        name,
-        email,
-        password,
-      })
-      await appwriteService.createDatabaseAccount({ name, email, password })
-      await appwriteService.createVerification()
-      if (userData) {
-        setAuthStatus(true)
+
+  if (userId && secret) {
+    const create = async ({ name, email, password }: any) => {
+      try {
+        const userData = await appwriteService.createUserAccount({
+          name,
+          email,
+          password,
+        })
+        await appwriteService.createDatabaseAccount({ name, email, password })
+        await appwriteService.createVerification()
+        if (userData) {
+          setAuthStatus(true)
+        }
+        appwriteService
+          .verifyUser(verifyParams)
+          .then(() => {
+            console.log('user is verified')
+            router.push('/')
+          })
+          .catch((err) => {
+            console.log(err)
+            setError(err.message)
+          })
+        router.push('/')
+      } catch (error: any) {
+        console.log(error)
+        setError(error.message)
       }
-      appwriteService
-        .verifyUser(verifyParams)
-        .then(() => {
-          console.log('user is verified')
-          router.push('/')
-        })
-        .catch((err) => {
-          console.log(err)
-          setError(err.message)
-        })
-      router.push('/')
-    } catch (error: any) {
-      console.log(error)
-      setError(error.message)
     }
+  } else {
+    console.error('userId and/or secret not found or invalid.')
   }
 
   const googleAuth = async (e: any) => {
