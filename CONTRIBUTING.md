@@ -1,37 +1,36 @@
 # Contributing to InfraBoard
 
-🌟 We're thrilled to have you contribute to the InfraBoard project! Here's how you can join us in making InfraBoard better:
+We are excited that you are interested in contributing to InfraBoard! This document provides guidelines for contributions to the project.
 
-## Getting Started
+## How to Contribute
 
-1. **Fork & Star**: Start by forking the repository and give us a star to show your support.
+Contributions to InfraBoard can take many forms. Here are some ways you can help:
 
-## Issues
+- **Reporting Bugs**: If you find a bug, please create an issue in our issue tracker.
+- **Suggesting Enhancements**: Have ideas on how to make InfraBoard better? Open an issue with your suggestion.
+- **Code Contributions**: If you want to write code for InfraBoard, that's great! Start by looking at our open issues.
 
-- **Report Bugs**: If you find a bug, please use the bug template to create an issue, ensuring you describe the bug in detail.
-- **Feature Requests**: Have a feature in mind? Use the feature request template to let us know, providing as much detail as you can.
+## Steps for Contributing
 
-## Code Contributions
+1. **Fork the Repository**: Start by forking the InfraBoard repository to your GitHub account.
 
-- **Bug Fixes**: If you're tackling a bug, please push your code to the `bug` branch.
-- **Features**: For new features, your code should go to the `feature` branch.
-- **Tests & Others**: If your changes don't fall into the above categories, push them to the `test` branch.
+2. **Clone the Forked Repository**: Clone your fork to your local machine.
 
-## Pull Requests
+3. **Create a New Branch**: Create a branch for your contribution (`git checkout -b feature/YourFeature`).
 
-When you're ready to contribute your changes:
+4. **Make Your Changes**: Work on the changes you wish to make.
 
-1. Make sure your code follows the project's standards and passes all tests.
-2. Submit a pull request targeting the appropriate branch as outlined above.
+5. **Test Your Changes**: Ensure your changes do not introduce any new bugs or issues.
 
-## Stay Updated
+6. **Commit Your Changes**: Commit your changes with a clear commit message (`git commit -m 'Add YourFeature'`).
 
-To keep up with InfraBoard's development:
+7. **Push to Your Branch**: Push your changes to your branch (`git push origin feature/YourFeature`).
 
-- Watch the project repository.
-- Join our community discussions and chats.
+8. **Open a Pull Request**: Go to the InfraBoard repository and open a pull request from your branch.
 
-We can't wait to see the amazing things you'll contribute to InfraBoard! 🚀
+##### Notes :
+
+To contribute to InfraBoard, always push new features or bug fixes to a feature/bug branch first. Then, raise a pull request (PR) from your feature/bug branch to the test branch for review. It's crucial to target the test branch with your PRs to ensure changes are tested before merging into the master/stage codebase. This approach helps maintain the stability and quality of the project.
 
 ## Coding Guidelines
 
