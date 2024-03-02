@@ -1,7 +1,9 @@
 name: Bug report
 description: Create a bug report to help us improve Keploy
 title: '[bug]: '
-labels: [bug]
+labels: [bug, infraboard, xerocodee]
+projects: [InfraBoard]
+milestone: [Infra Board]
 body:
   - type: markdown
     attributes:
