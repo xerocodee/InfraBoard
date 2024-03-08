@@ -47,7 +47,7 @@ const compute = {
       icon: AWSIcons.ImageBuilderIcon,
     },
     {
-      title: 'Lamda',
+      title: 'Lambda',
       icon: AWSIcons.LambdaIcon,
     },
     {
