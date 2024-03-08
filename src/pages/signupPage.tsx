@@ -60,7 +60,7 @@ const formSchema = z.object({
 const SignUp = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
-  const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
+  const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
 
   const [formData, setFormData] = useState({
@@ -78,48 +78,52 @@ const SignUp = () => {
     userId: userId || '',
     secret: secret || '',
   }
-
-  if (userId && secret) {
-    const create = async ({ name, email, password }: any) => {
-      try {
-        const userData = await appwriteService.createUserAccount({
-          name,
-          email,
-          password,
-        })
-        await appwriteService.createDatabaseAccount({ name, email, password })
-        await appwriteService.createVerification()
-        if (userData) {
-          setAuthStatus(true)
-        }
-        appwriteService
-          .verifyUser(verifyParams)
-          .then(() => {
-            console.log('user is verified')
-            router.push('/')
-          })
-          .catch((err) => {
-            console.log(err)
-            setError(err.message)
-          })
-        router.push('/')
-      } catch (error: any) {
-        console.log(error)
-        setError(error.message)
+  const create = async ({ name, email, password }: any) => {
+    try {
+      const userData = await appwriteService.createUserAccount({
+        name,
+        email,
+        password,
+      })
+      await appwriteService.createDatabaseAccount({ name, email, password })
+      await appwriteService.createVerification()
+      if (userData) {
+        setAuthStatus(true)
       }
+      appwriteService
+        .verifyUser(verifyParams)
+        .then(() => {
+          console.log('user is verified')
+          router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+          setError(err.message)
+        })
+      router.push('/')
+    } catch (error: any) {
+      console.log(error)
+      setError(error.message)
     }
+  }
+  if (userId && secret) {
+    create({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    });
   } else {
     console.error('userId and/or secret not found or invalid.')
   }
 
   const googleAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('google', suceesPath, failurePath)
+    account.createOAuth2Session('google', successPath, failurePath)
     router.push('/')
   }
   const githubAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('github', suceesPath, failurePath)
+    account.createOAuth2Session('github', successPath, failurePath)
     router.push('/')
   }
 
