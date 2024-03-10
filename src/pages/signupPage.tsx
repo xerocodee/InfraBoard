@@ -71,13 +71,13 @@ const SignUp = () => {
   const [error, setError] = useState('')
   const { setAuthStatus } = useAuth()
 
-  const urlParams = new URLSearchParams(window.location.search)
-  const userId = urlParams.get('userId')
-  const secret = urlParams.get('secret')
-  const verifyParams = {
-    userId: userId || '',
-    secret: secret || '',
-  }
+  // const urlParams = new URLSearchParams(window.location.search)
+  // const userId = urlParams.get('userId')
+  // const secret = urlParams.get('secret')
+  // const verifyParams = {
+  //   userId: userId || '',
+  //   secret: secret || '',
+  // }
 
   // if (userId && secret) {
   const create = async ({ name, email, password }: any) => {
