@@ -33,15 +33,17 @@ InfraBoard combines synchronous and asynchronous services for a streamlined expe
 ### Getting Started
 Here you will find all the available npm commands [HERE](https://github.com/xerocodee/InfraBoard/wiki/Getting-Started)
 
-## 🤝 Contributing
+##### Demo Loging
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Email : `test@xerocodee.com` | Passowrd : `test@123`
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## 🤝 Contribution Department
+
+InfraBoard Open Source Contribution Department
+
+1. [Tech Department](./CONTRIBUTING.md) | [Code Structure](./STRUCTURE.md)
+2. [Designer Department](https://www.figma.com/file/HALTRuGqqInPg3VQ0kMwH2/InfraBoard?type=design&node-id=0%3A1&mode=design&t=GNyhaHaAAO4b4RgK-1)
+3. Technical Documentation Department : Comming Soon . . .
 
 ## Preview
 

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { IoIosRocket } from 'react-icons/io'
 import { FiPenTool } from 'react-icons/fi'
@@ -9,17 +9,17 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import { DropdownMenuDemo } from './avatarDropDown'
 
 const Header = () => {
   const [selectedTool, setSelectedTool] = useState<string | null>('pen')
-
   const handleToolClick = (tool: string) => {
     setSelectedTool(tool === selectedTool ? null : tool)
   }
 
   return (
     <>
-      <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-[30rem] z-50 h-[4rem]">
+      <div className="px-4 py-3 border-b border-gray-200 flex items-center  gap-[30rem] z-50 h-[4rem]">
         <Button
           variant="default"
           className="hover:bg-[#714eff] hover:text-white space-x-2"
@@ -27,7 +27,7 @@ const Header = () => {
           <IoAddCircleOutline size={20} />
           <span>New Architecture</span>
         </Button>
-        <div className="flex  rounded-md bg-[#f1f5f9] p-1">
+        <div className="flex  rounded-md bg-[#f1f5f9] p-1 mr-auto">
           <Tooltip>
             <TooltipContent side="bottom">
               <p className="font-medium shadow-2xl border-[1px] border-gray-200 text-[#003ab7]">
@@ -63,6 +63,7 @@ const Header = () => {
             </TooltipTrigger>
           </Tooltip>
         </div>
+        <DropdownMenuDemo />
       </div>
     </>
   )
