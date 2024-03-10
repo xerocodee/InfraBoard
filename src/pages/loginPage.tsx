@@ -49,7 +49,7 @@ const formSchema = z.object({
 const Login = () => {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
-  const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
+  const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
   const [error, setError] = useState('')
   const [formData, setFormData] = useState({
@@ -72,13 +72,13 @@ const Login = () => {
   }
   const googleAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('google', suceesPath, failurePath)
+    account.createOAuth2Session('google', successPath, failurePath)
     router.push('/')
   }
 
   const githubAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('github', suceesPath, failurePath)
+    account.createOAuth2Session('github', successPath, failurePath)
     router.push('/')
   }
 

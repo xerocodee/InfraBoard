@@ -60,7 +60,7 @@ const formSchema = z.object({
 const SignUp = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
-  const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
+  const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
 
   const [formData, setFormData] = useState({
@@ -71,55 +71,71 @@ const SignUp = () => {
   const [error, setError] = useState('')
   const { setAuthStatus } = useAuth()
 
-  const urlParams = new URLSearchParams(window.location.search)
-  const userId = urlParams.get('userId')
-  const secret = urlParams.get('secret')
+  let userId = ''
+  let secret = ''
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search)
+    userId = urlParams.get('userId') || ''
+    secret = urlParams.get('secret') || ''
+  }
+
   const verifyParams = {
     userId: userId || '',
     secret: secret || '',
   }
 
-  if (userId && secret) {
-    const create = async ({ name, email, password }: any) => {
-      try {
-        const userData = await appwriteService.createUserAccount({
-          name,
-          email,
-          password,
+  const create = async ({ name, email, password }: any) => {
+    try {
+      const userData = await appwriteService.createUserAccount({
+        name,
+        email,
+        password,
+      })
+      await appwriteService.createDatabaseAccount({ name, email, password })
+      await appwriteService.createVerification()
+      if (userData) {
+        setAuthStatus(true)
+      }
+      appwriteService
+        .verifyUser(verifyParams)
+        .then(() => {
+          console.log('user is verified')
+          router.push('/')
         })
-        await appwriteService.createDatabaseAccount({ name, email, password })
-        await appwriteService.createVerification()
-        if (userData) {
-          setAuthStatus(true)
-        }
-        appwriteService
-          .verifyUser(verifyParams)
-          .then(() => {
-            console.log('user is verified')
-            router.push('/')
-          })
-          .catch((err) => {
-            console.log(err)
-            setError(err.message)
-          })
-        router.push('/')
-      } catch (error: any) {
-        console.log(error)
-        setError(error.message)
+        .catch((err) => {
+          console.log(err)
+          setError(err.message)
+        })
+      router.push('/')
+    } catch (error: any) {
+      console.log(error)
+      setError(error.message)
+    }
+  }
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        setLoading(true)
+        const data = await appwriteService.isLoggedIn()
+        if (data) router.replace('/')
+      } catch (error) {
+      } finally {
+        setLoading(false)
       }
     }
-  } else {
-    console.error('userId and/or secret not found or invalid.')
-  }
+    checkAuth()
+  }, [router])
 
   const googleAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('google', suceesPath, failurePath)
+    account.createOAuth2Session('google', successPath, failurePath)
     router.push('/')
   }
+
   const githubAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('github', suceesPath, failurePath)
+    account.createOAuth2Session('github', successPath, failurePath)
     router.push('/')
   }
 
@@ -140,25 +156,13 @@ const SignUp = () => {
     })
   }
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        setLoading(true)
-        const data = await appwriteService.isLoggedIn()
-        if (data) router.replace('/')
-      } catch (error) {
-      } finally {
-        setLoading(false)
-      }
-    }
-    checkAuth()
-  }, [router])
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
         <Icons.spinner className="h-32 w-32 animate-spin" />
       </div>
     )
+
   return (
     <>
       <div className="container relative  h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols- lg:px-0">
