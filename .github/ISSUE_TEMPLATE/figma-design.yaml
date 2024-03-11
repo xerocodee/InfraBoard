@@ -1,18 +1,18 @@
 name: Figma Design Submission
 description: Submit a design file for review
-title: "[Design]: "
+title: '[Design]: '
 labels: [design, figma, infraboard, xerocodee]
 body:
   - type: markdown
     attributes:
-      value: "Thank you for submitting your design. Please provide the necessary details for review."
+      value: 'Thank you for submitting your design. Please provide the necessary details for review.'
 
   - type: input
     id: design-title
     attributes:
       label: Design Title
-      description: "What is the title of your design?"
-      placeholder: "Enter the title here"
+      description: 'What is the title of your design?'
+      placeholder: 'Enter the title here'
     validations:
       required: true
 
@@ -20,8 +20,8 @@ body:
     id: design-description
     attributes:
       label: Design Description
-      description: "Please provide a detailed description of your design."
-      placeholder: "Describe your design here"
+      description: 'Please provide a detailed description of your design.'
+      placeholder: 'Describe your design here'
     validations:
       required: true
 
@@ -29,8 +29,8 @@ body:
     id: figma-link
     attributes:
       label: Figma File Link
-      description: "Please paste the link to your Figma file."
-      placeholder: "https://www.figma.com/file/..."
+      description: 'Please paste the link to your Figma file.'
+      placeholder: 'https://www.figma.com/file/...'
     validations:
       required: true
 
@@ -38,15 +38,15 @@ body:
     id: terms
     attributes:
       label: Terms and Conditions
-      description: "Please accept the terms and conditions."
+      description: 'Please accept the terms and conditions.'
       options:
-        - label: "I have read and agree to the [Terms of Service](/terms) and [Privacy Policy](/privacy)."
+        - label: 'I have read and agree to the [Terms of Service](/terms) and [Privacy Policy](/privacy).'
 
   - type: dropdown
     id: design-category
     attributes:
       label: Design Category
-      description: "Please select the category your design best fits into."
+      description: 'Please select the category your design best fits into.'
       options:
         - UI/UX
         - Branding

@@ -60,7 +60,7 @@ const formSchema = z.object({
 const SignUp = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
-  const suceesPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
+  const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
 
   const [formData, setFormData] = useState({
@@ -114,12 +114,13 @@ const SignUp = () => {
 
   const googleAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('google', suceesPath, failurePath)
+    account.createOAuth2Session('google', successPath, failurePath)
     router.push('/')
   }
+
   const githubAuth = async (e: any) => {
     e.preventDefault()
-    account.createOAuth2Session('github', suceesPath, failurePath)
+    account.createOAuth2Session('github', successPath, failurePath)
     router.push('/')
   }
 
@@ -153,12 +154,14 @@ const SignUp = () => {
     }
     checkAuth()
   }, [router])
+
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
         <Icons.spinner className="h-32 w-32 animate-spin" />
       </div>
     )
+
   return (
     <>
       <div className="container relative  h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols- lg:px-0">
