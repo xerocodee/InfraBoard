@@ -12,6 +12,9 @@ import CloudNetwork from "./network/CloudNetwork"
 
 //tools
 import Debugger from "./tools/Debugger"
+import Monitoring from "./tools/Monitoring"
+import Trace from "./tools/Trace"
+import Logging from "./tools/Logging"
 
 
 const GCPIcons = {
@@ -28,7 +31,11 @@ const GCPIcons = {
     CloudNetwork,
 
     //tools
-    Debugger
+    Debugger,
+    Monitoring,
+    Trace,
+    Logging
+
 }
 
 export { GCPIcons }
