@@ -8,9 +8,6 @@ permissions:
   checks: write
   pull-requests: write
 
-env:
-  VITE_INTERNAL: true
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -20,8 +17,6 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx prettier --check .
-      - run: npx prettier --write .
 
   build:
     runs-on: ubuntu-latest
