@@ -50,8 +50,6 @@ body:
     attributes:
       label: Version
       options:
-        - Cloud
-        - Self-hosted
         - Local
     validations:
       required: true
