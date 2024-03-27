@@ -25,7 +25,7 @@ const Drag = ({
   handleZoomOut,
   handleFitContent,
 }: any) => {
-  const [position, setPosition] = useState({ x: 450, y: 10 })
+  const [position, setPosition] = useState({ x: 450, y: 27 })
   const [isDragged, setIsDragged] = useState(false)
   const [currentMode, setCurrentMode] = useState('move')
   const [currentGridMode, setCurrentGridMode] = useState('grid')
