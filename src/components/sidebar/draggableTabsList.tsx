@@ -28,7 +28,7 @@ const SubTab: React.FC<SubTabInterface> = ({ title, icon: Icon, subList }) => {
 
   return (
     <div
-      ref={drag}
+      ref={drag as unknown as React.LegacyRef<HTMLDivElement>}
       style={{
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
