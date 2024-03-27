@@ -80,7 +80,7 @@ const Canvas: React.FC<CanvasProps> = ({ onItemDrop, droppedItems }) => {
       // Call the callback to update the common state
       onItemDrop(newItem)
     },
-  }) as unknown as [unknown, React.LegacyRef<HTMLDivElement>];
+  }) as unknown as [unknown, React.LegacyRef<HTMLDivElement>]
 
   return (
     <div>
