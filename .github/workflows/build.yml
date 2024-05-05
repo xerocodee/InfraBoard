@@ -1,4 +1,4 @@
-name: Build InfraBoard
+name: Code RUN
 
 on: push
 
