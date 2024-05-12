@@ -1,7 +1,7 @@
 name: Figma Design Submission
 description: Submit a design file for review
 title: '[Design]: '
-labels: [design, figma, infraboard, xerocodee]
+labels: [design, figma, infraboard, xerocodee, gssoc24]
 body:
   - type: markdown
     attributes:
