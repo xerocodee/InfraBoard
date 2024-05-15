@@ -28,7 +28,7 @@ Contributions to InfraBoard can take many forms. Here are some ways you can help
 
 8. **Open a Pull Request**: Go to the InfraBoard repository and open a pull request from your branch.
 
-### Alternatively, contribute using GitHub Desktop
+## Alternatively, contribute using GitHub Desktop
 
 1. **Open GitHub Desktop:**
    
@@ -74,7 +74,7 @@ Contributions to InfraBoard can take many forms. Here are some ways you can help
 ⭐️ Support the Project
 If you find this project helpful, please consider giving it a star on GitHub! Your support helps to grow the project and reach more contributors.
 
-#### Notes :
+## Notes :
 
 To contribute to InfraBoard, always push new features or bug fixes to a feature/bug branch first. Then, raise a pull request (PR) from your feature/bug branch to the test branch for review. It's crucial to target the test branch with your PRs to ensure changes are tested before merging into the master/stage codebase. This approach helps maintain the stability and quality of the project.
 
