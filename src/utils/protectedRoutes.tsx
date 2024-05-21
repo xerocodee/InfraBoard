@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import appwriteService from '@/appwrite/config'
 import { Loader2 } from 'lucide-react'
+import { BarLoader, ClockLoader} from 'react-spinners';
 
 export const Icons = {
   spinner: Loader2,
@@ -35,12 +36,12 @@ const ProtectedLayout = (Component: any) => {
       checkAuthentication()
     }, [router, pathname])
 
-    if (isLoading) {
+    if (loading){
       return (
         <div className="h-[100vh] w-full flex justify-center items-center">
-          <Icons.spinner className="h-32 w-32 animate-spin" />
+          <ClockLoader color="#36d7b7" loading={loading} height={72} width={62} />
         </div>
-      )
+      );
     }
     return <Component {...props} />
   }
