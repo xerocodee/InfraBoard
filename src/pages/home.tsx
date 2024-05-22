@@ -9,12 +9,13 @@ import CodeEditor from '@/components/code_editor/codeEditor';
 import { useEffect, useState } from 'react';
 import appwriteService from '@/appwrite/config';
 import { useRouter } from 'next/navigation';
-import { BarLoader, ClockLoader} from 'react-spinners';
+import { ClockLoader } from 'react-spinners';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [droppedItems, setDroppedItems] = useState([]);
+  
   const handleItemDrop = (newItem) => {
     setDroppedItems((prevItems) => [...prevItems, newItem]);
   };
@@ -24,8 +25,9 @@ const Home = () => {
       try {
         setLoading(true);
         const data = await appwriteService.isLoggedIn();
-        if (!data) router.replace('/login');
-        else {
+        if (!data) {
+          router.replace('/login');
+        } else {
           setLoading(false);
         }
       } catch (error) {
@@ -35,13 +37,13 @@ const Home = () => {
     checkAuth();
   }, [router]);
 
-  if (loading)
+  if (loading) {
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
         <ClockLoader color="#36d7b7" loading={loading} height={72} width={62} />
       </div>
     );
-
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
