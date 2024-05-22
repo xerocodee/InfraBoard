@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { BarLoader, ClockLoader} from 'react-spinners';
 import {
   Form,
   FormControl,
@@ -47,7 +48,7 @@ const formSchema = z.object({
 })
 
 const Login = () => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const router = useRouter()
   const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
@@ -58,18 +59,27 @@ const Login = () => {
   })
   const { setAuthStatus } = useAuth()
 
-  const login = async ({ email, password }: any) => {
+  useEffect(() => {
     try {
-      const session = await appwriteService.login({ email, password })
-      console.log(formData)
-      if (session) {
-        setAuthStatus(true)
-        router.push('/')
+      const login = async ({ email, password }: any) => {
+        try {
+          const session = await appwriteService.login({ email, password })
+          console.log(formData)
+          if (session) {
+            setAuthStatus(true)
+            router.push('/')
+          }
+         
+        } catch (error: any) {
+          setError(error.message)
+        }
       }
-    } catch (error: any) {
-      setError(error.message)
+    } catch (error) {
+      
     }
-  }
+  }, [router]);
+
+
   const googleAuth = async (e: any) => {
     e.preventDefault()
     account.createOAuth2Session('google', successPath, failurePath)
@@ -109,9 +119,9 @@ const Login = () => {
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
-        <Icons.spinner className="h-32 w-32 animate-spin" />
+        <ClockLoader color="#36d7b7" loading={loading} height={72} width={62} />
       </div>
-    )
+    );
   return (
     <>
       <div className="container relative  h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-1 lg:px-0">
