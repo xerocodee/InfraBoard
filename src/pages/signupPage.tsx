@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { BarLoader, ClockLoader} from 'react-spinners';
 import {
   Form,
   FormControl,
@@ -158,9 +159,9 @@ const SignUp = () => {
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
-        <Icons.spinner className="h-32 w-32 animate-spin" />
+        <ClockLoader color="#36d7b7" loading={loading} height={72} width={62} />
       </div>
-    )
+    );
 
   return (
     <>

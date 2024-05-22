@@ -1,4 +1,5 @@
 'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -7,6 +8,7 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { BarLoader, ClockLoader } from 'react-spinners'
 import {
   Form,
   FormControl,
@@ -30,6 +32,7 @@ import useAuth from '@/context/useAuth'
 import appwriteService, { account } from '@/appwrite/config'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
+
 const Icons = {
   spinner: Loader2,
 }
@@ -43,7 +46,7 @@ const formSchema = z.object({
     .email(),
   password: z
     .string()
-    .min(8, { message: 'Password must be atleast 8 characters' }),
+    .min(8, { message: 'Password must be at least 8 characters' }),
 })
 
 const Login = () => {
@@ -52,16 +55,11 @@ const Login = () => {
   const successPath = process.env.NEXT_PUBLIC_SUCCESS_LOGIN_PATH
   const failurePath = process.env.NEXT_PUBLIC_FAILURE_LOGIN_PATH
   const [error, setError] = useState('')
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
   const { setAuthStatus } = useAuth()
 
-  const login = async ({ email, password }: any) => {
+  const login = async ({ email, password }: { email: string, password: string }) => {
     try {
       const session = await appwriteService.login({ email, password })
-      console.log(formData)
       if (session) {
         setAuthStatus(true)
         router.push('/')
@@ -70,6 +68,7 @@ const Login = () => {
       setError(error.message)
     }
   }
+
   const googleAuth = async (e: any) => {
     e.preventDefault()
     account.createOAuth2Session('google', successPath, failurePath)
@@ -89,6 +88,7 @@ const Login = () => {
       password: '',
     },
   })
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     login({ email: values.email, password: values.password })
   }
@@ -106,15 +106,17 @@ const Login = () => {
     }
     checkAuth()
   }, [router])
+
   if (loading)
     return (
       <div className="h-[100vh] w-full flex justify-center items-center">
-        <Icons.spinner className="h-32 w-32 animate-spin" />
+        <ClockLoader color="#36d7b7" loading={loading} height={72} width={62} />
       </div>
     )
+
   return (
     <>
-      <div className="container relative  h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-1 lg:px-0">
+      <div className="container relative h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-1 lg:px-0">
         <Link
           href="/signup"
           className={cn(
@@ -142,7 +144,6 @@ const Login = () => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            {' '}
                             <FormLabel htmlFor="email">Email</FormLabel>
                             <FormControl>
                               <Input placeholder="" {...field} />
@@ -158,14 +159,9 @@ const Login = () => {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            {' '}
                             <FormLabel htmlFor="password">Password</FormLabel>
                             <FormControl>
-                              <Input
-                                type="password"
-                                placeholder=""
-                                {...field}
-                              />
+                              <Input type="password" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -213,13 +209,9 @@ const Login = () => {
                 </Button>
               </div>
               <p className="mt-2 text-xs text-center text-gray-700 mb-2">
-                {' '}
                 Don&apos;t have an account?{' '}
                 <Link href="/signup">
-                  {' '}
-                  <span className=" text-blue-600 hover:underline">
-                    Sign up
-                  </span>
+                  <span className=" text-blue-600 hover:underline">Sign up</span>
                 </Link>
               </p>
             </Card>
