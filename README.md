@@ -33,9 +33,9 @@ InfraBoard combines synchronous and asynchronous services for a streamlined expe
 ### Getting Started
 Here you will find all the available npm commands [HERE](https://github.com/xerocodee/InfraBoard/wiki/Getting-Started)
 
-##### Demo Loging
+##### Demo Logging
 
-Email : `test@xerocodee.com` | Passowrd : `test@123`
+Email : `test@xerocodee.com` | Password : `test@123`
 
 ## 🤝 Contribution Department
 
@@ -43,7 +43,7 @@ InfraBoard Open Source Contribution Department
 
 1. [Tech Department](./CONTRIBUTING.md) | [Code Structure](./STRUCTURE.md)
 2. [Designer Department](https://www.figma.com/file/HALTRuGqqInPg3VQ0kMwH2/InfraBoard?type=design&node-id=0%3A1&mode=design&t=GNyhaHaAAO4b4RgK-1)
-3. Technical Documentation Department : Comming Soon . . .
+3. Technical Documentation Department : Coming Soon . . .
 
 ## Preview
 
