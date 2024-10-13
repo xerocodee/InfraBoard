@@ -1,7 +1,7 @@
 name: Feature request
 description: Suggest a feature to improve InfraBoard
 title: '[feature]: '
-labels: [feature, infraboard, xerocodee, gssoc]
+labels: [feature, infraboard, xerocodee]
 body:
   - type: markdown
     attributes:
