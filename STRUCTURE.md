@@ -1,40 +1,190 @@
-# InfraBoard File Structure
+# 📁 InfraBoard Project Structure
 
-This document provides an overview of the InfraBoard project's file structure to help you navigate and understand where different parts of the code reside.
+This document provides a comprehensive overview of the InfraBoard project's file structure and architecture.
 
-## Overview
+## 🏗 Application Architecture
 
-- `public/`: Contains static assets like images and `favicon.ico` used across the application.
-- `src/`: The source code directory for the application.
-  - `app/`: Core app files including global styles and layout definitions.
-  - `assets/`: Asset files categorized by their types (AWS, GCP, logos, etc.).
-  - `appwrite` : Contains various appwrite authentication functions.
-  - `components/`: Reusable React components.
-    - `canvas/`: Components related to the canvas functionality.
-    - `drag/`: Drag-and-drop related components.
-    - `header/`: Header component of the application.
-    - `modals/`: Contains various modal components like `ReadmeModal.tsx`.
-    - `sidebar/`: Sidebar and related components.
-  - `conf` : config file for appwrite project credentials.
-  - `context` : contains various global context states functions.
-  - `lib` : contains various library files for the project.
-  - `store/`: State management using Redux or similar state stores, separated by service types.
-  - `styles`: css file for the project
-  - `types` : typescript interface files
-  - `utils` : functions which will be used multiple times across the project.
-    - `protectedRoutes.tsx` : This file is important! This file ensures that only authenticated user will have access to InfraBoard Dashboard.
-- `.eslintrc.json`: ESLint configuration for coding standards.
-- `.gitignore`: Specifies files to be ignored by git.
-- `.prettierrc`: Prettier configuration for code formatting.
-- `next-env.d.ts`: Type declarations for Next.js.
-- `next.config.mjs`: Configuration file for Next.js.
-- `README.md`: Comprehensive guide and overview of the project.
+```mermaid
+graph TD
+    A[Client Layer] --> B[Next.js Application]
+    B --> C[Service Layer]
+    C --> D[External Services]
 
-## Details
+    subgraph "Client Layer"
+        A1[Browser] --> A2[React Components]
+        A2 --> A3[State Management]
+    end
 
-Each subdirectory contains further organization specific to its purpose. For instance:
+    subgraph "Next.js Application"
+        B1[Pages] --> B2[Components]
+        B2 --> B3[Hooks]
+        B2 --> B4[Utils]
+    end
 
-- `store/aws/`: Contains state management files specific to AWS services.
-- `store/gcp/`: Contains state management files specific to GCP services.
+    subgraph "Service Layer"
+        C1[API Routes] --> C2[Authentication]
+        C2 --> C3[Data Services]
+    end
 
-Remember, this structure may evolve as the project grows. Always pull the latest changes and consult the documentation for the most up-to-date information.
+    subgraph "External Services"
+        D1[Appwrite]
+        D2[AWS Services]
+        D3[GCP Services]
+    end
+```
+
+## 📂 Directory Structure
+
+```mermaid
+graph TD
+    Root["/"] --> SRC["src/"]
+    Root --> Public["public/"]
+    Root --> Scripts["scripts/"]
+    Root --> Config["config files"]
+
+    SRC --> App["app/"]
+    SRC --> Assets["assets/"]
+    SRC --> Components["components/"]
+    SRC --> Lib["lib/"]
+    SRC --> Types["types/"]
+    SRC --> Utils["utils/"]
+
+    App --> Auth["auth/"]
+    App --> Layout["layout/"]
+    App --> Pages["pages/"]
+
+    Assets --> AWS["aws/"]
+    Assets --> GCP["gcp/"]
+    Assets --> Logos["logos/"]
+
+    Components --> UI["ui/"]
+    Components --> Canvas["canvas/"]
+    Components --> Modals["modals/"]
+```
+
+## 📁 Core Directories
+
+### `/src`
+The main source code directory containing the application logic.
+
+#### `/app`
+Next.js 13+ app directory structure:
+- `/auth` - Authentication related pages
+- `/layout` - Layout components and templates
+- `/pages` - Application pages and routes
+
+#### `/assets`
+Static assets and icon components:
+- `/aws` - AWS service icons and assets
+- `/gcp` - GCP service icons and assets
+- `/logos` - Brand and service logos
+
+#### `/components`
+Reusable React components:
+- `/canvas` - Drag-and-drop canvas components
+- `/ui` - UI components (buttons, inputs, etc.)
+- `/modals` - Modal dialog components
+
+#### `/lib`
+Core libraries and utilities:
+- `utils.ts` - Utility functions
+- `types.ts` - TypeScript type definitions
+
+### `/public`
+Static files served directly:
+- Images
+- Fonts
+- Favicon
+- robots.txt
+- sitemap.xml
+
+### `/scripts`
+Build and maintenance scripts:
+- `generate-robots.js`
+- `generate-sitemap.js`
+
+## 🔧 Configuration Files
+
+- `.env.example` - Environment variables template
+- `.eslintrc.json` - ESLint configuration
+- `.prettierrc` - Prettier configuration
+- `next.config.mjs` - Next.js configuration
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `tsconfig.json` - TypeScript configuration
+
+## 🚀 Key Features Implementation
+
+```mermaid
+flowchart TD
+    A[User Interface] --> B{Authentication}
+    B -->|Success| C[Dashboard]
+    B -->|Failure| D[Login Page]
+    
+    C --> E[Canvas]
+    E --> F[Infrastructure Design]
+    F --> G[Code Generation]
+    
+    subgraph "Infrastructure Management"
+        F --> H[AWS Services]
+        F --> I[GCP Services]
+        H --> J[Terraform]
+        I --> J
+    end
+```
+
+## 📦 Component Organization
+
+Components are organized following atomic design principles:
+
+1. **Atoms**: Basic UI components
+   - Buttons
+   - Inputs
+   - Icons
+
+2. **Molecules**: Combinations of atoms
+   - Form fields
+   - Search bars
+   - Cards
+
+3. **Organisms**: Complex UI sections
+   - Navigation
+   - Sidebars
+   - Canvas tools
+
+4. **Templates**: Page layouts
+   - Dashboard layout
+   - Authentication layout
+   - Canvas layout
+
+5. **Pages**: Complete pages
+   - Home
+   - Dashboard
+   - Settings
+
+## 🔄 State Management
+
+The application uses various state management approaches:
+
+1. **Local State**: React's useState
+2. **Context API**: For shared state
+3. **Server State**: Next.js server components
+
+## 🛠 Development Workflow
+
+```mermaid
+gitGraph
+    commit id: "initial"
+    branch develop
+    checkout develop
+    commit id: "feature-1"
+    branch feature
+    checkout feature
+    commit id: "feature-2"
+    checkout develop
+    merge feature
+    checkout main
+    merge develop
+    commit id: "release"
+```
+
+For more detailed information about contributing to specific areas of the codebase, please refer to our [Contributing Guidelines](./CONTRIBUTING.md).

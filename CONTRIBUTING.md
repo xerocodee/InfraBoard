@@ -1,108 +1,303 @@
-# Contributing to InfraBoard
+# 🤝 Contributing to InfraBoard
 
-We are excited that you are interested in contributing to InfraBoard! This document provides guidelines for contributions to the project.
+Thank you for your interest in contributing to InfraBoard! This guide will help you get started with contributing to our project.
 
-## How to Contribute
+## 📋 Table of Contents
 
-Contributions to InfraBoard can take many forms. Here are some ways you can help:
+```mermaid
+mindmap
+  root((Contributing))
+    Development
+      Setup
+      Workflow
+      Standards
+    Documentation
+      Code
+      API
+      User Guide
+    Testing
+      Unit Tests
+      Integration
+      E2E
+    Community
+      Issues
+      PRs
+      Reviews
+```
 
-- **Reporting Bugs**: If you find a bug, please create an issue in our issue tracker.
-- **Suggesting Enhancements**: Have ideas on how to make InfraBoard better? Open an issue with your suggestion.
-- **Code Contributions**: If you want to write code for InfraBoard, that's great! Start by looking at our open issues.
+## 🚀 Getting Started
 
-## Steps for Contributing
+### Development Environment Setup
 
-1. **Fork the Repository**: Start by forking the InfraBoard repository to your GitHub account.
+```mermaid
+flowchart LR
+    A[Fork Repository] --> B[Clone Locally]
+    B --> C[Install Dependencies]
+    C --> D[Setup Environment]
+    D --> E[Start Development]
+```
 
-2. **Clone the Forked Repository**: Clone your fork to your local machine.
+1. **Fork and Clone**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/InfraBoard.git
+   cd InfraBoard
+   ```
 
-3. **Create a New Branch**: Create a branch for your contribution (`git checkout -b feature/YourFeature`).
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-4. **Make Your Changes**: Work on the changes you wish to make.
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env.local
+   # Configure your environment variables
+   ```
 
-5. **Test Your Changes**: Ensure your changes do not introduce any new bugs or issues.
+4. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
 
-6. **Commit Your Changes**: Commit your changes with a clear commit message (`git commit -m 'Add YourFeature'`).
+## 🌿 Branch Strategy
 
-7. **Push to Your Branch**: Push your changes to your branch (`git push origin feature/YourFeature`).
+```mermaid
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature
+    checkout feature
+    commit
+    commit
+    checkout develop
+    merge feature
+    branch release
+    checkout release
+    commit
+    checkout main
+    merge release
+```
 
-8. **Open a Pull Request**: Go to the InfraBoard repository and open a pull request from your branch.
+### Branch Naming Convention
+- Feature: `feature/your-feature-name`
+- Bug Fix: `fix/issue-description`
+- Documentation: `docs/what-you-documented`
+- Performance: `perf/what-you-optimized`
 
-## Alternatively, contribute using GitHub Desktop
+## 💻 Development Workflow
 
-1. **Open GitHub Desktop:**
-   
-   Launch GitHub Desktop and log in to your GitHub account if you haven't already.
+1. **Create a Branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-3. **Clone the Repository:**
-   
-   - If you haven't cloned the InfraBoard repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
-   - Choose the InfraBoard repository from the list of repositories on GitHub and clone it to your local machine.
+2. **Make Changes**
+   - Write clean, maintainable code
+   - Follow our coding standards
+   - Add tests for new features
 
-5. **Switch to the Correct Branch:**
-   
-   - Ensure you are on the branch that you want to submit a pull request for.
-   - If you need to switch branches, you can do so by clicking on the "Current Branch" dropdown menu and selecting the desired branch.
+3. **Commit Changes**
+   ```bash
+   git add .
+   git commit -m "feat: add new feature"
+   ```
 
-7. **Make Changes:**
-   
-   Make your changes to the code or files in the repository using your preferred code editor.
+   Commit Message Format:
+   ```
+   type(scope): subject
 
-9. **Commit Changes:**
-    
-   - In GitHub Desktop, you'll see a list of the files you've changed. Check the box next to each file you want to include in the commit.
-   - Enter a summary and description for your changes in the "Summary" and "Description" fields, respectively. Click the "Commit to <branch-name>" button to commit your changes to the local branch.
+   body
 
-11. **Push Changes to GitHub:**
-    
-   After committing your changes, click the "Push-origin" button in the top right corner of GitHub Desktop to push your changes to your forked repository on GitHub.
+   footer
+   ```
 
-13. **Create a Pull Request:**
-    
-  - Go to the GitHub website and navigate to your fork of the InfraBoard repository.
-  - You should see a button to "Compare & pull request" between your fork and the original repository. Click on it.
+   Types:
+   - feat: New feature
+   - fix: Bug fix
+   - docs: Documentation
+   - style: Formatting
+   - refactor: Code restructuring
+   - test: Adding tests
+   - chore: Maintenance
 
-8. **Review and Submit:**
-   
-   - On the pull request page, review your changes and add any additional information, such as a title and description, that you want to include with your pull request.
-   - Once you're satisfied, click the "Create pull request" button to submit your pull request.
+4. **Push Changes**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-10. **Wait for Review:**
-    
-    Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the InfraBoard repository.
+## 🔍 Code Review Process
 
-⭐️ Support the Project
-If you find this project helpful, please consider giving it a star on GitHub! Your support helps to grow the project and reach more contributors.
+```mermaid
+sequenceDiagram
+    participant D as Developer
+    participant R as Reviewer
+    participant M as Maintainer
+    D->>R: Submit PR
+    R->>D: Review Comments
+    D->>R: Address Comments
+    R->>M: Approve PR
+    M->>D: Merge PR
+```
 
-## Notes :
+### Pull Request Guidelines
 
-To contribute to InfraBoard, always push new features or bug fixes to a feature/bug branch first. Then, raise a pull request (PR) from your feature/bug branch to the test branch for review. It's crucial to target the test branch with your PRs to ensure changes are tested before merging into the master/stage codebase. This approach helps maintain the stability and quality of the project.
+1. **Title Format**:
+   ```
+   [Type] Brief description
+   ```
 
-## Coding Guidelines
+2. **Description Template**:
+   ```markdown
+   ## Description
+   Brief description of changes
 
-- Ensure your code adheres to the project's coding standards.
-- Write clean, readable, and maintainable code.
-- Include comments in your code where necessary.
+   ## Related Issue
+   Fixes #(issue)
 
-## Documentation
+   ## Type of Change
+   - [ ] Bug fix
+   - [ ] New feature
+   - [ ] Breaking change
+   - [ ] Documentation update
 
-If you are adding new features or making changes that require documentation updates, please include them in your pull requests.
+   ## Testing
+   Describe tests you ran
 
-## Pull Request Guidelines
+   ## Screenshots (if applicable)
+   ```
 
-- Keep pull requests concise and focused on a single issue or feature.
-- Provide a detailed description of your changes in the pull request.
-- Reference any relevant issue numbers in your pull request description.
+## 🧪 Testing Guidelines
 
-## Code of Conduct
+### Test Structure
+```typescript
+describe('Component/Feature', () => {
+  beforeEach(() => {
+    // Setup
+  })
 
-Please note that this project is released with a Contributor [Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+  it('should behave as expected', () => {
+    // Test
+  })
 
-## Questions?
+  afterEach(() => {
+    // Cleanup
+  })
+})
+```
 
-If you have any questions or need assistance, feel free to open an issue for discussion.
+### Running Tests
+```bash
+# Unit tests
+npm run test
 
-- [Discord](https://discord.gg/nmRb3fsTgu)
-- [Discussions Room](https://github.com/xerocodee/InfraBoard/discussions)
+# E2E tests
+npm run test:e2e
 
-Thank you for contributing to InfraBoard, and we look forward to your contributions!
+# Coverage report
+npm run test:coverage
+```
+
+## 📝 Documentation
+
+### Code Documentation
+- Use JSDoc comments for functions
+- Document complex logic
+- Keep README files updated
+
+### API Documentation
+- Document all endpoints
+- Include request/response examples
+- Note any authentication requirements
+
+## 🎯 Project Structure
+
+```mermaid
+graph TD
+    A[Source Code] --> B[Components]
+    A --> C[Pages]
+    A --> D[Utils]
+    B --> E[UI Components]
+    B --> F[Features]
+    C --> G[Routes]
+    D --> H[Helpers]
+```
+
+## 🚦 Quality Guidelines
+
+### Code Quality Checklist
+- [ ] Follows coding standards
+- [ ] Includes tests
+- [ ] Documentation updated
+- [ ] No linting errors
+- [ ] Passes CI checks
+- [ ] Reviewed by peers
+
+### Performance Considerations
+- Optimize bundle size
+- Minimize re-renders
+- Use lazy loading
+- Implement caching
+
+## 🤝 Community Guidelines
+
+1. **Be Respectful**
+   - Value diverse perspectives
+   - Use inclusive language
+   - Be constructive in feedback
+
+2. **Communication Channels**
+   - GitHub Issues
+   - Pull Requests
+   - Project Discussions
+
+3. **Support**
+   - Help others learn
+   - Share knowledge
+   - Be patient with newcomers
+
+## 🏷️ Labels and Tags
+
+```mermaid
+graph LR
+    A[Labels] --> B[Priority]
+    A --> C[Type]
+    A --> D[Status]
+    B --> E[High]
+    B --> F[Medium]
+    B --> G[Low]
+    C --> H[Bug]
+    C --> I[Feature]
+    C --> J[Documentation]
+```
+
+## 📈 Release Process
+
+1. **Version Bump**
+   ```bash
+   npm version patch|minor|major
+   ```
+
+2. **Changelog Update**
+   - Document changes
+   - Group by type
+   - Include migration guides
+
+3. **Release Creation**
+   - Tag release
+   - Write release notes
+   - Deploy to production
+
+## 🎉 Recognition
+
+Contributors will be:
+- Added to CONTRIBUTORS.md
+- Mentioned in release notes
+- Recognized in project documentation
+
+---
+
+Remember to check our [Code of Conduct](./CODE_OF_CONDUCT.md) and [Templates](./TEMPLATE.md) for more information.
+
+For any questions, feel free to open an issue or join our community discussions.
